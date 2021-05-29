@@ -17,4 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/dashboard', 'dashboard.index')->middleware('auth');
+Route::view('/dashboard', 'pages.dashboard.index')->middleware('auth');
+Route::view('/services', 'pages.services');

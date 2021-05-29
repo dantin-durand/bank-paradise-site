@@ -18,9 +18,139 @@ body {
     overflow-x: hidden;
 }
 
-@media screen and (min-width: 425px) {
+/* 
+    PAGE SERVICES
+*/
+
+.services__header__container {
+    background-image: url("../img/header-bg.png");
+    background-position: right;
+    background-size: contain;
+    background-repeat-x: no-repeat;
+    padding: 30px 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
 }
 
-form {
-    background-color: red !important;
+.services__header__container h1 {
+    font-weight: var(--poppins-bold);
+    font-size: 30px;
+    color: var(--main-color);
+    margin-bottom: 10px;
+}
+
+.services__header__container p {
+    font-weight: var(--poppins-medium);
+    font-size: 16px;
+    color: var(--secondary-color);
+}
+
+.services__header__stepes {
+    margin-top: 20px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+}
+
+.services__header__stepes > div {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr;
+    align-items: center;
+    gap: 15px;
+}
+
+.services__header__stepes > div > h2 {
+    font-size: 50px;
+    color: var(--main-color);
+    font-weight: var(--poppins-bold);
+    text-align: right;
+}
+
+.services__header__stepes > div > p {
+    font-size: 14px;
+    font-weight: var(--poppins-medium);
+}
+
+.services__main__container > section {
+    padding: 50px 10%;
+    text-align: center;
+}
+
+.services__main__container > section > img {
+    width: 70%;
+}
+
+.services__main__container > section > div {
+    margin-top: 10px;
+}
+
+.services__main__container > section > div > h1 {
+    color: var(--main-color);
+    font-weight: var(--poppins-bold);
+    font-size: 25px;
+}
+
+.services__main__container > section > div > p {
+    font-size: 14px;
+    color: var(--secondary-color);
+    font-weight: var(--poppins-regular);
+    padding-top: 30px;
+    width: 90%;
+    margin: auto;
+}
+
+.services__main__container > section:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+@media screen and (min-width: 1024px) {
+    .services__header__title > h1 {
+        font-size: 53px;
+        margin-bottom: 30px;
+    }
+    .services__header__title > p {
+        width: 350px;
+        line-height: 40px;
+    }
+    .services__header__stepes {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+    .services__header__stepes > div > h2 {
+        font-size: 80px;
+    }
+    .services__header__stepes > div > p {
+        font-size: 16px;
+        font-weight: var(--poppins-semi-bold);
+    }
+    .services__main__container > section {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        min-height: 50vh;
+        align-items: center;
+        justify-items: center;
+        text-align: left;
+        gap: 40px;
+    }
+    .services__main__container > section:nth-child(even) {
+        grid-template-columns: 1fr 0.5fr;
+    }
+    .services__main__container > section:nth-child(even) > div {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    .services__main__container > section:nth-child(even) > img {
+        grid-column: 2;
+        grid-row: 1;
+    }
+    .services__main__container > section > div > h1 {
+        font-size: 32px;
+    }
+    .services__main__container > section > div > p {
+        font-size: 20px;
+        font-weight: var(--poppins-medium);
+        line-height: 30px;
+        width: 100%;
+    }
 }
