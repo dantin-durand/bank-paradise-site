@@ -19,6 +19,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    position: absolute;
+    top: 17.5px;
+    right: 30px;
+    z-index: 10;
 }
 
 .navbar__burger-menu > span {
@@ -46,6 +50,7 @@
 
 .navbar-default__container[class*="active"] .navbar__burger-menu > span {
     margin: 0;
+    background-color: var(--secondary-color);
 }
 
 .navbar-default__container[class*="active"]
@@ -67,4 +72,19 @@
     > span:nth-child(3) {
     transform: rotate(-45deg) translate(-7px, 7px);
     width: 30px;
+}
+
+.navbar-default__container[class*="active"] .navbar__items {
+    transform: translateX(0px);
+}
+
+.navbar__items {
+    transform: translateX(110%);
+    transition: all 0.2s ease;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #f4f4f4;
 }
