@@ -1,0 +1,7 @@
+.navbar-default__container {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    background-color: red;
+}
+
