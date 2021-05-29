@@ -1,3 +1,17 @@
+:root {
+    --main-color: #d61016;
+    --secondary-color: #1c1c1c;
+    --gradient-bg: linear-gradient(
+        45deg,
+        rgba(214, 16, 22, 1) 0%,
+        rgba(246, 102, 107, 1) 100%
+    );
+    font-family: "Poppins", sans-serif;
+}
+
+@media screen and (min-width: 425px) {
+}
+
 form {
     background-color: red !important;
 }
