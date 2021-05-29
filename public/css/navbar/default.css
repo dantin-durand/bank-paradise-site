@@ -8,7 +8,7 @@
     padding: 0px 30px;
 }
 
-.navbar-default__container > img {
+.navbar-default__container > a > img {
     height: 30px;
     width: initial;
 }
