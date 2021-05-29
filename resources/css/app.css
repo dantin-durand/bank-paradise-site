@@ -6,7 +6,16 @@
         rgba(214, 16, 22, 1) 0%,
         rgba(246, 102, 107, 1) 100%
     );
+    --poppins-light: 300;
+    --poppins-regular: 400;
+    --poppins-medium: 500;
+    --poppins-semi-bold: 600;
+    --poppins-bold: 700;
     font-family: "Poppins", sans-serif;
+}
+
+body {
+    overflow-x: hidden;
 }
 
 @media screen and (min-width: 425px) {

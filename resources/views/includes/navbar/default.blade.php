@@ -8,11 +8,13 @@
         </div>
         <div class="navbar__items">
             <ul>
-                <li>item</li>
-                <li>item</li>
-                <li>item</li>
-                <li>item</li>
-                <li>item</li>
+                <li><a href="/">Services</a></li>
+                <li><a href="/">News</a></li>
+                <li><a href="/">Contact</a></li>
+            </ul>
+            <ul>
+                <li><a href="/">Conexion</a></li>
+                <li><a href="/">Inscription</a></li>
             </ul>
         </div>
     </div>
