@@ -8,6 +8,10 @@
     padding: 0px 30px;
 }
 
+.navbar-default__container > * {
+    z-index: 9;
+}
+
 .navbar-default__container > a > img {
     height: 30px;
     width: initial;
@@ -122,6 +126,10 @@
 
 .navbar__items > ul:last-child > li:last-child > a {
     color: #fff !important;
+}
+
+.home__container .navbar-default__container {
+    background: transparent;
 }
 
 @media screen and (min-width: 1024px) {
