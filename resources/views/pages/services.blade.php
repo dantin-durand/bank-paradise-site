@@ -48,7 +48,7 @@ de la communauté">
         <img src="/img/steps/entrerpise.svg" alt="Compte entreprise">
         <div>
             <h1>Compte entreprise</h1>
-            <p>Gérez les comptes bancaires de votre entreprise avec un système de gestion des employés et un paramétrage de l'envoi automatique des salaires./p>
+            <p>Gérez les comptes bancaires de votre entreprise avec un système de gestion des employés et un paramétrage de l'envoi automatique des salaires.</p>
         </div>
     </section>
     <section>

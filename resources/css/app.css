@@ -105,6 +105,10 @@ body {
 }
 
 @media screen and (min-width: 1024px) {
+    .services__header__container {
+        min-height: 80vh;
+        justify-content: space-around;
+    }
     .services__header__title > h1 {
         font-size: 53px;
         margin-bottom: 30px;
@@ -127,7 +131,7 @@ body {
     .services__main__container > section {
         display: grid;
         grid-template-columns: 1fr 2fr;
-        min-height: 50vh;
+        min-height: 80vh;
         align-items: center;
         justify-items: center;
         text-align: left;
@@ -148,9 +152,26 @@ body {
         font-size: 32px;
     }
     .services__main__container > section > div > p {
-        font-size: 20px;
-        font-weight: var(--poppins-medium);
+        font-size: 16px;
+        font-weight: var(--poppins-regular);
         line-height: 30px;
         width: 100%;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .services__header__stepes {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .services__main__container > section {
+        grid-template-columns: 1fr 1fr;
+        padding: 50px 15%;
+    }
+    .services__main__container > section:nth-child(even) {
+        grid-template-columns: 1fr 1fr;
+    }
+    .services__main__container > section > div > p {
+        width: 80%;
+        margin: initial;
+        font-size: 16px;
     }
 }
