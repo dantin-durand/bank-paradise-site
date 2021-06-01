@@ -15,4 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'pages.home');
 Route::view('/services', 'pages.services');
+Route::view('/news', 'pages.news');
+Route::view('/news/1', 'pages.article');
 Route::view('/dashboard', 'pages.dashboard.index')->middleware('auth');
