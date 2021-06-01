@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<header class="news__header">
+<header class="header__container">
     <h1 class="title">News</h1>
     <input type="search" name="" id="" placeholder="Rechercher...">
 </header>
