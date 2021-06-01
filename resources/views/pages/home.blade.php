@@ -94,8 +94,9 @@ de la communauté">
         </div>
 
 
-        <button class="prev__btn"></button>
-        <button class="next__btn"></button>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
 
 
         </div>
