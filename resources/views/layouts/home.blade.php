@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar/default.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 
 <body class="home__container">
@@ -18,6 +19,18 @@
     @yield('content')
 
     <script src="{{ asset('js/navbar.js') }}"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            navigation: {
+                nextEl: '.next__btn',
+                prevEl: '.prev__btn',
+            },
+            slidesPerView: 3,
+            spaceBetween: 30
+        });
+    </script>
 </body>
 
 </html>
