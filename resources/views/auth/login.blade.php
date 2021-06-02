@@ -1,3 +1,6 @@
+@extends('layouts.default')
+
+@section('content')
 <form method="POST" action="{{ route('login') }}">
     @csrf
 
@@ -55,3 +58,4 @@
         </div>
     </div>
 </form>
+@endsection
