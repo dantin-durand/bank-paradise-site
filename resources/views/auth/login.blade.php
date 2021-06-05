@@ -1,61 +1,56 @@
 @extends('layouts.default')
 
 @section('content')
-<form method="POST" action="{{ route('login') }}">
-    @csrf
+<div class="auth__container">
+    <form method="POST" action="{{ route('login') }}" class="card">
+        <h2>Connexion</h2>
+        @csrf
+        <div class="auth__inputs-container">
 
-    <div>
-        <label for="email">{{ __('E-Mail Address') }}</label>
+            <div class="auth__input-container">
 
-        <div>
-            <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                <input id="email" class="input" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="{{ __('E-Mail Address') }}">
 
-            @error('email')
-            <span role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-        </div>
-    </div>
+                @error('email')
+                <span role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
 
-    <div>
-        <label for="password">{{ __('Password') }}</label>
+            </div>
 
-        <div class="col-md-6">
-            <input id="password" type="password" name="password" required autocomplete="current-password">
+            <div class="auth__input-container">
 
-            @error('password')
-            <span role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-        </div>
-    </div>
+                <input id="password" class="input" type="password" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}">
 
-    <div>
-        <div>
+                @error('password')
+                <span role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+
+            </div>
+
             <div>
+
                 <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                 <label for="remember">
                     {{ __('Remember Me') }}
                 </label>
+
+            </div>
+
+            <div>
+
+                <button type="submit" class="btn btn-full btn-large">
+                    {{ __('Login') }}
+                </button>
+
+
+
             </div>
         </div>
-    </div>
-
-    <div>
-        <div>
-            <button type="submit">
-                {{ __('Login') }}
-            </button>
-
-            @if (Route::has('password.request'))
-            <a href="{{ route('password.request') }}">
-                {{ __('Forgot Your Password?') }}
-            </a>
-            @endif
-        </div>
-    </div>
-</form>
+    </form>
+</div>
 @endsection
