@@ -27,26 +27,29 @@ de la communauté">
     <x-formules path="" type="home" />
     <section class="news-slide__sections">
         <h1 class="title t-center">News</h1>
-        <div class="swiper-container">
-
-            <div class="swiper-wrapper">
-                <a href="/">
-                    <div class="swiper-slide" style="background: linear-gradient(0deg, rgba(214,16,22,1) 0%, rgba(214,16,22,0) 100%), url('https://via.placeholder.com/200x400');">
+        <div>
+            <div class="prev__btn"></div>
+            <div class="next__btn"></div>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    @for ($i = 0; $i < 6; $i++) <div class="swiper-slide" style="background: linear-gradient(0deg, rgba(214,16,22,1) 0%, rgba(214,16,22,0) 100%), url('https://via.placeholder.com/200x400');">
                         <div>
                             <p>20/04/2021</p>
                             <h1>Mise en place d'un chat</h1>
                         </div>
-                </a>
+                </div>
+
+                @endfor
             </div>
         </div>
 
-
-
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-
-
         </div>
+
+
+
+
+
+
     </section>
 </main>
 @endsection

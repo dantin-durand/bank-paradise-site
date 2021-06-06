@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.services')
 
 @section('content')
 <header class="services__header__container">

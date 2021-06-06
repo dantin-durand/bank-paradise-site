@@ -22,7 +22,7 @@
             </form>
             @else
             <ul>
-                <li><a href="{{ route('login') }}">Conexionn</a></li>
+                <li><a href="{{ route('login') }}">Conexion</a></li>
                 <li><a href="{{ route('register') }}">Inscription</a></li>
             </ul>
             @endif
