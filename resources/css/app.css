@@ -18,13 +18,20 @@ body {
     overflow-x: hidden;
 }
 
+.color-success {
+    color: #58c139;
+}
+.color-error {
+    color: #d61016;
+}
+
 .btn {
     font-weight: var(--poppins-medium);
     color: var(--main-color);
     box-shadow: 0px 3px 6px #00000029;
     border-radius: 5px;
     border: 0px;
-    font-size: 10px;
+    font-size: 12px;
     padding: 8px 30px;
     background: #fff;
     width: fit-content;
@@ -72,8 +79,13 @@ body {
 
 .card {
     box-shadow: 0px 0px 10px #00000030;
-    padding: 20px;
+    padding: 40px 30px;
     border-radius: 10px;
+    background-color: #fff;
+}
+
+.container {
+    padding: 50px 10%;
 }
 
 .input {
@@ -122,6 +134,12 @@ textarea::placeholder {
     }
 }
 
+@media screen and (min-width: 1440px) {
+    .container {
+        padding: 50px 20%;
+    }
+}
+
 /* 
     PAGE HOME
 */
@@ -142,6 +160,7 @@ textarea::placeholder {
     color: #fff;
     font-size: 25px;
     line-height: 30px;
+    width: 80%;
 }
 .home__header__container > h1 > span {
     font-weight: var(--poppins-bold);
@@ -709,4 +728,119 @@ textarea::placeholder {
     .contact__container > form {
         padding: 40px;
     }
+}
+
+/*
+    PAGE AUTH
+*/
+
+.auth__container {
+    padding: 20px 10%;
+    position: relative;
+    background-image: url("../img/bg-formule.svg");
+    height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.auth__container form {
+    width: 100%;
+}
+
+.auth__container .card {
+    max-width: 500px;
+    margin: auto;
+}
+
+.auth__inputs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.auth__container h2 {
+    font-size: 30px;
+    font-weight: var(--poppins-bold);
+    color: var(--main-color);
+    padding: 0px 0px 20px 0px;
+}
+.auth__input-container input {
+    width: 100%;
+}
+
+.auth__progress-bar {
+    display: grid;
+    padding: 0px 10%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    width: 230px;
+    justify-content: center;
+    margin: auto;
+}
+
+.auth__progress-bar div {
+    height: 10px;
+    border: 1px solid var(--main-color);
+    border-radius: 10px;
+    width: 50px;
+    margin: auto;
+    transition: all 0.2s ease;
+}
+
+.auth__progress-bar div:hover {
+    background-color: var(--main-color);
+}
+
+.auth__progress-bar div[class*="active"] {
+    background-color: var(--main-color);
+}
+
+.payement__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.payement__container > .card {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+}
+
+.payement__container > .card i {
+    font-size: 9px;
+    font-weight: var(--poppins-regular);
+}
+
+.payement__container > .card h2 {
+    font-size: 40px;
+    font-weight: var(--poppins-bold);
+    color: var(--main-color);
+    padding-bottom: 10px;
+}
+
+.payement__container > .card span {
+    font-size: 14px;
+    font-weight: var(--poppins-light);
+    color: #000;
+}
+
+.payement__container > .card p {
+    font-size: 14px;
+    font-weight: var(--poppins-light);
+}
+
+.payement__container > .card strong {
+    font-weight: var(--poppins-medium);
+}
+
+.payement__container .inputs-group {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eaeaea;
+    margin: 30px 0;
 }
