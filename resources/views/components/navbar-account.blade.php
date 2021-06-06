@@ -1,5 +1,5 @@
 <nav class="navbar-default__container">
-    <a href="/"><img src="/img/logo-white.svg" alt="logo bank-paradise"></a>
+    <a href="/dashboard"><img src="/img/logo-white.svg" alt="logo bank-paradise"></a>
     <div>
         <div class="navbar__burger-menu">
             <span></span>

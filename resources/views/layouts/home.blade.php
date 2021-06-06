@@ -15,7 +15,7 @@
 </head>
 
 <body class="home__container">
-    @include('includes.navbar.default')
+    <x-navbar-default />
     @yield('content')
 
     <script src="{{ asset('js/navbar.js') }}"></script>

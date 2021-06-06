@@ -32,6 +32,6 @@
         </div>
     </form>
 
-    <x-register-progress-bar items="1" itemsMax="4" />
+    <x-register-progress-bar items="4" itemsMax="4" />
 </div>
 @endsection

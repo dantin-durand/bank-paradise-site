@@ -12,12 +12,14 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar/default.css') }}">
+
 </head>
 
 <body>
     <x-navbar-account />
     @yield('content')
 
+    <script src="https://kit.fontawesome.com/ee9709fe10.js" crossorigin="anonymous"></script>
     <script src="{{ asset('js/navbar.js') }}"></script>
 </body>
 

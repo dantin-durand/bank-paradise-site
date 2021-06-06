@@ -111,6 +111,76 @@
                         <p class="color-error">-16231 EUR</p>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <p>28/07/2020</p>
+                    </td>
+                    <td>
+                        <p>Albert MACHIN</p>
+                        <p>
+                            <span class="color-success">Argent Reçu </span> - Je suis un texte heureux ! :)
+                        </p>
+                    </td>
+                    <td>
+                        <p class="color-success">+2000 EUR</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>28/07/2020</p>
+                    </td>
+                    <td>
+                        <p>Albert MACHIN</p>
+                        <p>
+                            <span class="color-success">Argent Reçu </span> - Je suis un texte heureux ! :)
+                        </p>
+                    </td>
+                    <td>
+                        <p class="color-success">+2000 EUR</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>28/07/2020</p>
+                    </td>
+                    <td>
+                        <p>Albert MACHIN</p>
+                        <p>
+                            <span class="color-success">Argent Reçu </span> - Je suis un texte heureux ! :)
+                        </p>
+                    </td>
+                    <td>
+                        <p class="color-success">+2000 EUR</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>28/07/2020</p>
+                    </td>
+                    <td>
+                        <p>Albert MACHIN</p>
+                        <p>
+                            <span class="color-success">Argent Reçu </span> - Je suis un texte heureux ! :)
+                        </p>
+                    </td>
+                    <td>
+                        <p class="color-success">+2000 EUR</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>28/07/2020</p>
+                    </td>
+                    <td>
+                        <p>Albert MACHIN</p>
+                        <p>
+                            <span class="color-success">Argent Reçu </span> - Je suis un texte heureux ! :)
+                        </p>
+                    </td>
+                    <td>
+                        <p class="color-success">+2000 EUR</p>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

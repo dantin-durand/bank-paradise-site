@@ -44,10 +44,10 @@
 
             <div>
 
-                <!-- <button type="submit" class="btn btn-full btn-large">
+                <button type="submit" class="btn btn-full btn-large">
                     {{ __('Register') }}
-                </button> -->
-                <a href="/register/step2" class="btn btn-full btn-large">Inscription</a>
+                </button>
+                <!-- <a href="/register/step2" class="btn btn-full btn-large">Inscription</a> -->
 
             </div>
         </div>

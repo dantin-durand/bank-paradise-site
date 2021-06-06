@@ -12,10 +12,20 @@
                 <li><a href="/news">News</a></li>
                 <li><a href="/contact">Contact</a></li>
             </ul>
+            @if ( !empty(Auth::User()->name) )
             <ul>
-                <li><a href="{{ route('login') }}">Conexion</a></li>
+                <li><a href="/account">Compte</a></li>
+                <li> <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Déconnexion</a></li>
+            </ul>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            @else
+            <ul>
+                <li><a href="{{ route('login') }}">Conexionn</a></li>
                 <li><a href="{{ route('register') }}">Inscription</a></li>
             </ul>
+            @endif
         </div>
     </div>
 </nav>

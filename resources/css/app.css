@@ -31,7 +31,7 @@ body {
     box-shadow: 0px 3px 6px #00000029;
     border-radius: 5px;
     border: 0px;
-    font-size: 10px;
+    font-size: 12px;
     padding: 8px 30px;
     background: #fff;
     width: fit-content;
@@ -134,6 +134,12 @@ textarea::placeholder {
     }
 }
 
+@media screen and (min-width: 1440px) {
+    .container {
+        padding: 50px 20%;
+    }
+}
+
 /* 
     PAGE HOME
 */
@@ -154,6 +160,7 @@ textarea::placeholder {
     color: #fff;
     font-size: 25px;
     line-height: 30px;
+    width: 80%;
 }
 .home__header__container > h1 > span {
     font-weight: var(--poppins-bold);
@@ -773,15 +780,20 @@ textarea::placeholder {
     margin: auto;
 }
 
-.auth__progress-bar > div {
+.auth__progress-bar div {
     height: 10px;
     border: 1px solid var(--main-color);
     border-radius: 10px;
     width: 50px;
     margin: auto;
+    transition: all 0.2s ease;
 }
 
-.auth__progress-bar > div[class*="active"] {
+.auth__progress-bar div:hover {
+    background-color: var(--main-color);
+}
+
+.auth__progress-bar div[class*="active"] {
     background-color: var(--main-color);
 }
 
