@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,9 @@ Route::view('/news', 'pages.news');
 Route::view('/news/1', 'pages.article');
 Route::view('/contact', 'pages.contact');
 Route::view('/register/step2', 'auth.register2');
-Route::view('/register/step3', 'auth.register3');
+// Route::view('/register/step3', 'auth.register3');
+Route::get('/register/step3', [CheckoutController::class, 'index']);
+Route::post('/register/step3', [CheckoutController::class, 'store']);
 Route::view('/register/step4', 'auth.register4');
 Route::view('/dashboard', 'pages.dashboard.index')->middleware('auth');
 Route::view('/account', 'pages.dashboard.account')->middleware('auth');

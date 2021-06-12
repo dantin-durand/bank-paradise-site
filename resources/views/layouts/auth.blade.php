@@ -19,6 +19,8 @@
     @yield('content')
     <x-footer type="authenticate" />
     <script src="{{ asset('js/navbar.js') }}"></script>
+
+
 </body>
 
 </html>
