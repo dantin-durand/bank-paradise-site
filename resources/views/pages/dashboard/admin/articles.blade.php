@@ -18,17 +18,22 @@
                 </tr>
             </thead>
             <tbody>
-                @for ($i = 0; $i < 6; $i++)<tr>
-                    <td>#12{{$i}}</td>
-                    <td><a href="#">Mise en place d'un chat</a> </td>
+                @foreach ($articlesList as $article)
+                <tr>
+                    <td>{{ $article->id }}</td>
+                    <td><a href="#">{{ $article->title }}</a> </td>
                     <td>12/02/2021</td>
                     <td>
                         <a href="#"><i class="fas fa-eye"></i></a>
                         <a href="#"><i class="fas fa-pen"></i></a>
-                        <a href="#" class="color-error"><i class="fas fa-trash"></i></a>
+                        <a href="{{ url('/admin/news', [$article->id]) }}" onclick="event.preventDefault();document.getElementById('delete-article-form-{{$article->id}}').submit();" class="color-error"><i class="fas fa-trash"></i></a>
+                        <form style="display: none;" method="POST" id="delete-article-form-{{$article->id}}" action="{{ url('/admin/news', [$article->id]) }}">
+                            @csrf
+                            <input type="hidden" name="_method" value="DELETE">
+                        </form>
                     </td>
-                    </tr>
-                    @endfor
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

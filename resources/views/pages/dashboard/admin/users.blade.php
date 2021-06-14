@@ -15,17 +15,21 @@
                 </tr>
             </thead>
             <tbody>
-                @for ($i = 0; $i < 6; $i++)<tr>
-                    <td>#12{{$i}}</td>
-                    <td><a href="#">pseudo123@gmail.com</a> </td>
-                    <td>12/02/2021</td>
+                @foreach ($userList as $user)<tr>
+                    <td>{{ $user->id }}</td>
+                    <td><a href="#">{{ $user->email }}</a> </td>
+                    <td>{{ $user->created_at }}</td>
                     <td>
                         <a href="#"><i class="fas fa-eye"></i></a>
                         <a href="#"><i class="fas fa-user-edit"></i></a>
-                        <a href="#" class="color-error"><i class="fas fa-trash"></i></a>
+                        <a href="{{ url('/admin/users', [$user->id]) }}"" onclick="event.preventDefault();document.getElementById('delete-user-form-{{$user->id}}').submit();" class="color-error"><i class="fas fa-trash"></i></a>
+                        <form style="display: none;" method="POST" id="delete-user-form-{{$user->id}}" action="{{ url('/admin/users', [$user->id]) }}"">
+                            @csrf
+                            <input type="hidden" name="_method" value="DELETE">
+                        </form>
                     </td>
-                    </tr>
-                    @endfor
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
