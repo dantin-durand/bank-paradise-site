@@ -4,7 +4,9 @@
 <div class="container account">
     <div class="account__title">
         <h1>Compte</h1>
-        <a class="btn btn-full" href="/admin/users">Mode admin</a>
+        @if (Auth::User()->is_admin === 1)
+            <a class="btn btn-full" href="/admin/users">Mode admin</a>
+        @endif
     </div>
     <div class="account__container">
         <div class="account__abonnement card">
@@ -27,9 +29,9 @@
                 <a class="btn">Modifier</a>
             </div>
             <ul>
-                <li>Adresse mail: pseudo123@gmail.com</li>
-                <li>Nom RP: John</li>
-                <li>Prénom RP: Dupont</li>
+                <li>Adresse mail: {{ $userDetails->email }}</li> 
+                <li>Nom RP: {{ $userDetails->lastname }}</li>
+                <li>Prénom RP: {{ $userDetails->firstname }}</li>
                 <li>Mot de passe: **********</li>
             </ul>
         </div>
