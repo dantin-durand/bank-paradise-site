@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class navbaAdmin extends Component
+class navbarAdmin extends Component
 {
     public $activePage;
 

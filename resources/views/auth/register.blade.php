@@ -7,15 +7,22 @@
         @csrf
         <div class="auth__inputs-container">
             <div class="auth__input-container">
+                <input id="firstname" class="input" type="text" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" autofocus placeholder="{{ __('Prénom') }}">
 
-                <input id="name" class="input" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Pseudo') }}">
-
-                @error('name')
+                @error('firstname')
                 <span role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
+            </div>
+            <div class="auth__input-container">
+                <input id="lastname" class="input" type="text" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus placeholder="{{ __('Nom') }}">
 
+                @error('lastname')
+                <span role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="auth__input-container">
                 <input id="email" class="input" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('E-Mail Address') }}">
