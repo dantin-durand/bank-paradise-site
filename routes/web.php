@@ -38,7 +38,6 @@ Route::view('/services', 'pages.services');
 // Route::view('/news', 'pages.news');
 Route::view('/news/1', 'pages.article');
 Route::view('/contact', 'pages.contact');
-// tu veux que je te montre ou ?
 // Route::view('/register', [UsersController::class, 'registerUser']);
 Route::view('/register/step2', 'auth.register2');
 // Route::view('/register/step3', 'auth.register3');
@@ -49,3 +48,4 @@ Route::view('/dashboard', 'pages.dashboard.index')->middleware('auth');
 
 // Route::view('/admin/news', 'pages.dashboard.admin.news')->middleware('auth');
 Route::view('/admin/addnews', 'pages.dashboard.admin.addnews')->middleware('auth');
+// relou mac avec ses raccourcis de sybole de merde je le fais tout le temps quand je veux save 
