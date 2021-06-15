@@ -19,7 +19,7 @@
 <body>
     <x-navbar-account />
     @yield('content')
-    <x-footer type="auth" />
+    <x-footer type="authenticate" />
     <script src="https://kit.fontawesome.com/ee9709fe10.js" crossorigin="anonymous"></script>
     <script src="{{ asset('js/navbar.js') }}"></script>
 </body>
