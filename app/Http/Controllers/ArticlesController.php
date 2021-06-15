@@ -13,11 +13,8 @@ class ArticlesController extends Controller
     {
         $articlesList = Articles::get();
 
-        if ($request->user()->is_admin) {
-            return redirect()->route('adminNewsList');
-        } else {
-            return view('pages.articles', ['articlesList' => $articlesList]);
-        }
+
+        return view('pages.articles', ['articlesList' => $articlesList]);
     }
 
     function renderAdminArticlesList(Request $request)

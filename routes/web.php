@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/news', [ArticlesController::class, 'renderArticlesList'])->middleware('auth')->name('news');
+Route::get('/news', [ArticlesController::class, 'renderArticlesList'])->name('news');
 
 Route::get('/admin/users', [UsersController::class, 'renderUserList'])->middleware('auth')->name('adminUserList');
 Route::delete('/admin/users/{id}', [UsersController::class, 'deleteUser'])->middleware('auth')->name("deleteUser");
