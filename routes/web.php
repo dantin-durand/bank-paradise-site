@@ -24,7 +24,11 @@ Route::delete('/admin/users/{id}', [UsersController::class, 'deleteUser'])->midd
 
 
 Route::get('/admin/news', [ArticlesController::class, 'renderAdminArticlesList'])->middleware('auth')->name('adminNewsList');
-Route::post('/admin/news', [ArticlesController::class, 'addArticles'])->middleware('auth');
+Route::view('/admin/addnews', 'pages.dashboard.admin.addnews')->middleware('auth');
+
+
+Route::post('/admin/news', [ArticlesController::class, 'addArticles'])->middleware('auth')->name('createArticle');
+
 Route::patch('/admin/news/{id}', [ArticlesController::class, 'updateArticles'])->middleware('auth');
 Route::delete('/admin/news/{id}', [ArticlesController::class, 'deleteArticles'])->middleware('auth');
 
@@ -47,5 +51,5 @@ Route::view('/register/step4', 'auth.register4');
 Route::view('/dashboard', 'pages.dashboard.index')->middleware('auth');
 
 // Route::view('/admin/news', 'pages.dashboard.admin.news')->middleware('auth');
-Route::view('/admin/addnews', 'pages.dashboard.admin.addnews')->middleware('auth');
+
 // relou mac avec ses raccourcis de sybole de merde je le fais tout le temps quand je veux save 

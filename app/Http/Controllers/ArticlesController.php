@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Articles;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 
@@ -34,22 +35,22 @@ class ArticlesController extends Controller
     {
 
         if ($request->user()->is_admin) {
-            $validated = $request->validate([
+            $request->validate([
                 'title' => 'required',
                 'banner' => 'required|image',
-                'body' => 'required|unique:posts|max:255',
-                'should_be_shown' => 'required|boolean',
-                'user_id' => 'required|integer',
+                'body' => 'required',
             ]);
 
+            $result = $request->banner->storeOnCloudinary();
+
             Articles::create([
-                'title' => $request->articles->title,
-                'banner' => $request->articles->banner,
-                'body' => $request->articles->body,
-                'should_be_shown' => $request->articles->should_be_shown,
-                'user_id' => $request->articles->user_id,
+                'title' => $request->title,
+                'banner' => $result->getSecurePath(),
+                'body' => $request->body,
+                'should_be_shown' => 1,
+                'user_id' => $request->user()->id,
             ]);
-            return redirect()->route('/articles');
+            return redirect()->route('adminNewsList');
         }
     }
 
