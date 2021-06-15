@@ -195,6 +195,10 @@
     }
 }
 
+.account {
+    min-height: calc(100vh - 117px);
+}
+
 .account__container {
     display: grid;
     gap: 20px;
