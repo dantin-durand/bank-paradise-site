@@ -19,10 +19,10 @@ body {
 }
 
 .color-success {
-    color: #58c139;
+    color: #58c139 !important;
 }
 .color-error {
-    color: #d61016;
+    color: #d61016 !important;
 }
 
 .btn {

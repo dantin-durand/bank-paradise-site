@@ -24,12 +24,21 @@
                     <td><a href="#">{{ $article->title }}</a> </td>
                     <td>12/02/2021</td>
                     <td>
-                        <a href="#"><i class="fas fa-eye"></i></a>
-                        <a href="#"><i class="fas fa-pen"></i></a>
-                        <a href="{{ url('/admin/news', [$article->id]) }}" onclick="event.preventDefault();document.getElementById('delete-article-form-{{$article->id}}').submit();" class="color-error"><i class="fas fa-trash"></i></a>
+                        
+                        <a href="#" onclick="event.preventDefault();document.getElementById('toshow-article-form-{{$article->id}}').submit();">
+                            <i class="{{$article->should_be_shown ? "fas fa-eye" : "fas fa-eye-slash"}}"></i>
+                        </a>
+                        <form style="display: none;" method="POST" id="toshow-article-form-{{$article->id}}" action="{{ route('admin.articles.toshow', [$article->id]) }}">
+                            @csrf
+                            {{ method_field('PUT') }}
+                        </form>
+
+                        <a href="{{ route('admin.articles.edit', [$article->id]) }}"><i class="fas fa-pen"></i></a>
+                        
+                        <a class="color-error" href="{{ url('/admin/news', [$article->id]) }}" onclick="event.preventDefault();document.getElementById('delete-article-form-{{$article->id}}').submit();"><i class="fas fa-trash"></i></a>
                         <form style="display: none;" method="POST" id="delete-article-form-{{$article->id}}" action="{{ url('/admin/news', [$article->id]) }}">
                             @csrf
-                            <input type="hidden" name="_method" value="DELETE">
+                            {{ method_field('DELETE') }}
                         </form>
                     </td>
                 </tr>

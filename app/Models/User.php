@@ -48,4 +48,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Articles::class);
     }
+    public function community()
+    {
+        return $this->hasOne(Articles::class);
+    }
 }

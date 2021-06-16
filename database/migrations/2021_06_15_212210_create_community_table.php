@@ -4,8 +4,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticlesTable extends Migration
+class CreateCommunityTable extends Migration
 {
+
+
     /**
      * Run the migrations.
      *
@@ -13,27 +15,24 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('communities', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->longText('body');
-            $table->string('banner');
-            $table->string('banner_id');
-            $table->boolean('should_be_shown');
+            $table->timestamps();
+            $table->string('name');
+            $table->string('description');
             $table->foreignId('user_id')
                 ->constrained()
                 ->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations. 
      *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('community');
     }
 }

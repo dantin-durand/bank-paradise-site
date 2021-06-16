@@ -16,7 +16,6 @@ class ArticlesSeeder extends Seeder
     public function run()
     {
         $faker = \Faker\Factory::create();
-
         for ($i = 0; $i < 9; $i++) {
             DB::table('articles')->insert([
                 'title' => $faker->name,

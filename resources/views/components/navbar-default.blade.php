@@ -12,7 +12,7 @@
                 <li><a href="/news">News</a></li>
                 <li><a href="/contact">Contact</a></li>
             </ul>
-            @if ( !empty(Auth::User()->name) )
+            @if ( !empty(Auth::User()->id) )
             <ul>
                 <li><a href="/account">Compte</a></li>
                 <li> <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Déconnexion</a></li>

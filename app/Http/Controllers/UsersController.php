@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Articles;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -15,14 +16,30 @@ class UsersController extends Controller
         return view('pages.dashboard.account', ["userDetails" => $userDetails]);
     }
 
-    function updateUserInfo(Request $request)
+    function updateUser(Request $request)
     {
-        $user = User::where('id', $request->user()->id);
-        $user->update([
-            'lastname' => $request->user()->lastname,
-            'firstname' => $request->user()->firstname,
-            'email' => $request->user()->email,
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
+
+        if ($request->user()->id === $request->id || $request->user()->is_admin) {
+            $user = User::where('id', $request->user()->id);
+
+            $user->update([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]);
+        }
+        if ($request->user()->is_admin) {
+            return redirect()->route('admin.users');
+        } else {
+            return redirect()->route('account');
+        }
     }
 
     function renderUserList(Request $request)
@@ -31,10 +48,39 @@ class UsersController extends Controller
         return view('pages.dashboard.admin.users', ['userList' => $userList]);
     }
 
+
+    function renderUserEditForm(Request $request)
+    {
+        $userInfo = User::firstWhere('id', $request->user()->id);
+        return view('pages.dashboard.settings', ['userInfo' => $userInfo]);
+    }
+
     function deleteUser(Request $request)
     {
         $deletedArticle = User::firstWhere('id', $request->id);
         $deletedArticle->delete();
-        return redirect()->route('adminUserList');
+        return redirect()->route('admin.users');
+    }
+
+
+    function modifyUser(Request $request)
+    {
+        if ($request->user()->is_admin) {
+            $userInfo = User::firstWhere('id', $request->user()->id);
+            return view('pages.dashboard.settings', ['userInfo' => $userInfo]);
+        } else {
+            return redirect()->route('admin.users');
+        }
+    }
+
+
+    function showUser(Request $request)
+    {
+        if ($request->user()->is_admin) {
+            $userDetails = User::firstWhere('id', $request->user()->id);
+            return view('pages.dashboard.account', ["userDetails" => $userDetails]);
+        } else {
+            return redirect()->route('admin.users');
+        }
     }
 }

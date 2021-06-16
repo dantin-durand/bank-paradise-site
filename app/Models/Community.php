@@ -5,26 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Articles extends Model
+class Community extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'should_be_shown',
-        'title',
-        'banner',
-        'banner_id',
-        'body',
         'user_id',
+        'name',
+        'description'
     ];
 
     public function user()
     {
         return $this->hasOne(User::class);
     }
-};
+}

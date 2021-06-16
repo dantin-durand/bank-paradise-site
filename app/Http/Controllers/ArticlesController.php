@@ -19,16 +19,41 @@ class ArticlesController extends Controller
 
     function renderAdminArticlesList(Request $request)
     {
-        $articlesList = Articles::get();
 
         if ($request->user()->is_admin) {
+            $articlesList = Articles::get();
             return view('pages.dashboard.admin.articles', ['articlesList' => $articlesList]);
         } else {
-            return redirect()->route('news');
+            return redirect()->route('login');
         }
     }
 
-    function addArticles(Request $request)
+    function renderCreateArticles(Request $request)
+    {
+        if ($request->user()->is_admin) {
+            return view('pages.dashboard.admin.addnews');
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
+    function renderUpdateArticles(Request $request)
+    {
+        if ($request->user()->is_admin) {
+
+            $article = Articles::firstWhere('id', $request->id);
+
+            if (empty($article)) {
+                return redirect()->route('admin.articles');
+            }
+
+            return view('pages.dashboard.admin.addnews', ['article' => $article]);
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
+    function storeArticles(Request $request)
     {
 
         if ($request->user()->is_admin) {
@@ -40,39 +65,70 @@ class ArticlesController extends Controller
 
             $result = $request->banner->storeOnCloudinary();
 
+
+
             Articles::create([
                 'title' => $request->title,
-                'banner' => $result->getSecurePath(),
                 'body' => $request->body,
+                'banner' => $result->getSecurePath(),
+                'banner_id' => $result->getPublicId(),
                 'should_be_shown' => 1,
                 'user_id' => $request->user()->id,
             ]);
-            return redirect()->route('adminNewsList');
+            return redirect()->route('admin.articles');
         }
     }
 
     function updateArticles(Request $request)
     {
         if ($request->user()->is_admin) {
-            $articlesToUpdate = Articles::where('id', $request->articles->id)->update;
+            $request->validate([
+                'title' => 'required',
+                'banner' => 'image',
+                'body' => 'required',
+            ]);
 
+            $articlesToUpdate = Articles::firstWhere('id', $request->id);
+
+            if (empty($request->banner)) {
+                $banner = $articlesToUpdate->banner;
+                $banner_id = $articlesToUpdate->banner_id;
+            } else {
+                $result = cloudinary()->destroy($articlesToUpdate->banner_id);
+                $result = $request->banner->storeOnCloudinary();
+                $banner = $result->getSecurePath();
+                $banner_id = $result->getPublicId();
+            }
 
             $articlesToUpdate->update([
-                'title' => $request->articles->title,
-                'banner' => $request->articles->banner,
-                'body' => $request->articles->body,
-                'should_be_shown' => $request->articles->should_be_shown,
-                'user_id' => $request->articles->user_id,
+                'title' => $request->title,
+                'banner' => $banner,
+                'banner_id' => $banner_id,
+                'body' => $request->body,
             ]);
         }
-        return redirect()->route('/articles');
+        return redirect()->route('admin.articles');
+    }
+
+    function toShowArticles(Request $request)
+    {
+        if ($request->user()->is_admin) {
+            $articlesToShow = Articles::firstWhere('id', $request->id);
+
+            $articlesToShow->update([
+                'should_be_shown' => !$articlesToShow->should_be_shown
+            ]);
+        }
+        return redirect()->route('admin.articles');
     }
 
     function deleteArticles(Request $request)
     {
         if ($request->user()->is_admin) {
-            $articlesToDelete = Articles::where('id', $request->id)->delete();
-            return redirect()->route('adminNewsList');
+            $articleDelete = Articles::FirstWhere('id', $request->id);
+            cloudinary()->destroy($articleDelete->banner_id);
+            $articleDelete->delete();
+            return redirect()->route('admin.articles');
         } else {
             return redirect()->route('news');
         }

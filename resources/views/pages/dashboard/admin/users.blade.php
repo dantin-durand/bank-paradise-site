@@ -20,12 +20,12 @@
                     <td><a href="#">{{ $user->email }}</a> </td>
                     <td>{{ $user->created_at }}</td>
                     <td>
-                        <a href="#"><i class="fas fa-eye"></i></a>
-                        <a href="#"><i class="fas fa-user-edit"></i></a>
-                        <a href="{{ url('/admin/users', [$user->id]) }}"" onclick="event.preventDefault();document.getElementById('delete-user-form-{{$user->id}}').submit();" class="color-error"><i class="fas fa-trash"></i></a>
-                        <form style="display: none;" method="POST" id="delete-user-form-{{$user->id}}" action="{{ url('/admin/users', [$user->id]) }}"">
+                        <a href="{{ route('admin.user', [$user->id] ) }}"><i class="fas fa-eye"></i></a>
+                        <a href="{{ route('admin.users.edit', [$user->id ]) }}"><i class="fas fa-user-edit"></i></a>
+                        <a href="#" onclick="event.preventDefault();document.getElementById('delete-user-form-{{$user->id}}').submit();" class="color-error"><i class="fas fa-trash"></i></a>
+                        <form style="display: none;" method="POST" id="delete-user-form-{{$user->id}}" action="{{ route('admin.users.delete', [$user->id]) }}"">
                             @csrf
-                            <input type="hidden" name="_method" value="DELETE">
+                            {{ method_field('DELETE') }}
                         </form>
                     </td>
                 </tr>

@@ -36,6 +36,11 @@ class CheckoutController extends Controller
             ]);
         }
 
-        return view('payments.success');
+        if (isset($subscription)) {
+            //TODO SEND MAIL
+        }
+
+
+        return redirect()->route('register.step4');
     }
 }
