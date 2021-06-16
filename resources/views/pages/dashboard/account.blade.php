@@ -13,19 +13,23 @@
             <div>
                 <h2>Abonnement</h2>
                 {{-- <a href="/register/step2" class="btn btn-full">Changer de formule</a> --}}
-                <a class="btn btn-full" href="{{ auth()->user()->billingPortalUrl(route('account')) }}">Gérer</a>
-            </div>
-            <div>
-                <p>Formule actuelle: Communauté (3.99€)</p>
-                <p>Prochain paiement: 02/11/2021</p>
-            </div>
-            {{-- <div>
-                <button class="btn btn-line">Annuler l'abonnement</button>
-                <button class="btn btn-line">Mettre en pause</button>
-            </div> --}}
+             </div>
+            @if(isset($userDetails->subscriptions[0]))
+                <div>
+                    <p>Formule actuelle: {{ $userDetails->subscriptions[0]->stripe_id }}</p>
+                </div>
+                {{-- <div>
+                    <button class="btn btn-line">Annuler l'abonnement</button>
+                    <button class="btn btn-line">Mettre en pause</button>
+                </div> --}}
+            @else
+            <br>
+                <a href="{{route('register.step2')}}" class="btn btn-large btn-full">Choisir un abonnement</a>
+            @endif
         </div>
         <div class="account__informations card">
-            <div>
+            
+        <div>
                 <h2>Informations</h2>
                 <a class="btn" href="{{ url('/account/settings') }}">Modifier</a>
             </div>

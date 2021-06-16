@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Articles;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
@@ -20,6 +22,8 @@ class ServicesController extends Controller
     function redirectUserOnLogin(Request $request)
     {
 
+        $userCommunity = User::where('user_id', $request->user()->id)->first();
+        dd($userCommunity);
         if (!isset($request->user()->stripe_id) || isset($request->user()->subscriptions[0]->ends_at) && $this->hasSubcriptionEnded($request)) {
             return redirect()->route('register.step2');
         }
@@ -27,5 +31,13 @@ class ServicesController extends Controller
             return redirect()->route('register.step4');
         }
         return redirect()->route('admin.users');
+    }
+
+
+    function getLatestNews(Request $request)
+    {
+        $latestNews = Articles::take(5)->where('should_be_shown', 1)->orderBy('id', 'desc')->get();
+
+        return view('pages.home', ['latestNews' => $latestNews]);
     }
 }

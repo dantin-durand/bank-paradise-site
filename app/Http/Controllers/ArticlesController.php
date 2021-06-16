@@ -11,9 +11,8 @@ class ArticlesController extends Controller
 {
     function renderArticlesList(Request $request)
     {
-        $articlesList = Articles::get();
 
-
+        $articlesList = Articles::where('should_be_shown', 1)->paginate(6);
         return view('pages.articles', ['articlesList' => $articlesList]);
     }
 
@@ -21,14 +20,22 @@ class ArticlesController extends Controller
     {
 
         if ($request->user()->is_admin) {
-            $articlesList = Articles::get();
+            $articlesList = Articles::paginate(6);
             return view('pages.dashboard.admin.articles', ['articlesList' => $articlesList]);
         } else {
-            return redirect()->route('login');
+            return redirect()->route('/login');
         }
     }
 
-    function renderCreateArticles(Request $request)
+
+    function renderArticleDetails(Request $request)
+    {
+        $articleDetails = Articles::firstWhere('id', $request->id);
+
+        return view('pages.article', ['articleDetails' => $articleDetails]);
+    }
+
+    function renderCreateArticleForm(Request $request)
     {
         if ($request->user()->is_admin) {
             return view('pages.dashboard.admin.addnews');
@@ -37,7 +44,7 @@ class ArticlesController extends Controller
         }
     }
 
-    function renderUpdateArticles(Request $request)
+    function renderUpdateArticleForm(Request $request)
     {
         if ($request->user()->is_admin) {
 
@@ -53,7 +60,7 @@ class ArticlesController extends Controller
         }
     }
 
-    function storeArticles(Request $request)
+    function addArticle(Request $request)
     {
 
         if ($request->user()->is_admin) {
@@ -110,7 +117,7 @@ class ArticlesController extends Controller
         return redirect()->route('admin.articles');
     }
 
-    function toShowArticles(Request $request)
+    function updateArticleVisibility(Request $request)
     {
         if ($request->user()->is_admin) {
             $articlesToShow = Articles::firstWhere('id', $request->id);

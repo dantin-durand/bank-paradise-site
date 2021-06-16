@@ -19126,6 +19126,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/css/ck-content.css":
+/*!**************************************!*\
+  !*** ./resources/css/ck-content.css ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/css/dashboard.css":
 /*!*************************************!*\
   !*** ./resources/css/dashboard.css ***!
@@ -19444,6 +19457,7 @@ process.umask = function() { return 0; };
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
 /******/ 			"css/dashboard": 0,
+/******/ 			"css/ck-content": 0,
 /******/ 			"css/app": 0,
 /******/ 			"css/navbar/default": 0,
 /******/ 			"css/reset": 0
@@ -19494,11 +19508,12 @@ process.umask = function() { return 0; };
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/dashboard","css/app","css/navbar/default","css/reset"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/dashboard","css/app","css/navbar/default","css/reset"], () => (__webpack_require__("./resources/css/reset.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/dashboard","css/app","css/navbar/default","css/reset"], () => (__webpack_require__("./resources/css/navbar/default.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/dashboard","css/app","css/navbar/default","css/reset"], () => (__webpack_require__("./resources/css/app.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/dashboard","css/app","css/navbar/default","css/reset"], () => (__webpack_require__("./resources/css/dashboard.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/dashboard","css/ck-content","css/app","css/navbar/default","css/reset"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/dashboard","css/ck-content","css/app","css/navbar/default","css/reset"], () => (__webpack_require__("./resources/css/reset.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/dashboard","css/ck-content","css/app","css/navbar/default","css/reset"], () => (__webpack_require__("./resources/css/navbar/default.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/dashboard","css/ck-content","css/app","css/navbar/default","css/reset"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/dashboard","css/ck-content","css/app","css/navbar/default","css/reset"], () => (__webpack_require__("./resources/css/ck-content.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/dashboard","css/ck-content","css/app","css/navbar/default","css/reset"], () => (__webpack_require__("./resources/css/dashboard.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

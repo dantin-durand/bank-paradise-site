@@ -43,6 +43,10 @@
                     </td>
                 </tr>
                 @endforeach
+                <div style="display: flex; justify-content: center;">
+                    {{ $articlesList->links() }}
+                </div>
+
             </tbody>
         </table>
     </div>

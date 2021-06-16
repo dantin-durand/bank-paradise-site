@@ -55,15 +55,8 @@ class UsersController extends Controller
         return view('pages.dashboard.settings', ['userInfo' => $userInfo]);
     }
 
-    function deleteUser(Request $request)
-    {
-        $deletedArticle = User::firstWhere('id', $request->id);
-        $deletedArticle->delete();
-        return redirect()->route('admin.users');
-    }
 
-
-    function modifyUser(Request $request)
+    function renderUserAdminEditForm(Request $request)
     {
         if ($request->user()->is_admin) {
             $userInfo = User::firstWhere('id', $request->user()->id);
@@ -73,8 +66,15 @@ class UsersController extends Controller
         }
     }
 
+    function deleteUser(Request $request)
+    {
+        $deletedArticle = User::firstWhere('id', $request->id);
+        $deletedArticle->delete();
+        return redirect()->route('admin.users');
+    }
 
-    function showUser(Request $request)
+
+    function renderUserDetails(Request $request)
     {
         if ($request->user()->is_admin) {
             $userDetails = User::firstWhere('id', $request->user()->id);

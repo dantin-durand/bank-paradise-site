@@ -24,6 +24,8 @@ class CheckoutController extends Controller
 
         $plan = Plan::find($request->plan);
 
+        dd($request);
+
         try {
             $subscription = $request
                 ->user()

@@ -4,6 +4,7 @@
     <ul>
         <li><a href="/admin/users" class="{{ $activePage === 'users' ? 'active' : ''}}">Liste des utilisateurs</a></li>
         <li><a href="/admin/news" class="{{ $activePage === 'news' ? 'active' : ''}}">Actualités</a></li>
+        <li><a href="/admin/subscriptions" class="{{ $activePage === 'subscriptions' ? 'active' : ''}}">Souscriptions</a></li>
         <li><a href="/account">Compte</a></li>
     </ul>
 </nav>
