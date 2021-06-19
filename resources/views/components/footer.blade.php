@@ -1,7 +1,7 @@
 @props(['type'])
 
 <footer>
-    <div class="auth-footer__container {{ $type }}">
+    <div class="auth-footer__container {{ empty(Auth::User()->id) ? $type : "authenticate" }}">
         <a href="/login" class="btn btn-large btn-line">Connexion</a>
         <div class="spacer"></div>
         <a href="/register" class="btn btn-large btn-full">Inscription</a>

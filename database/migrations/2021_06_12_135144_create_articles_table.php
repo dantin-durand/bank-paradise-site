@@ -18,11 +18,11 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->longText('body');
             $table->string('banner');
+            $table->string('banner_id');
             $table->boolean('should_be_shown');
             $table->foreignId('user_id')
                 ->constrained()
                 ->onDelete('cascade');
-
             $table->timestamps();
         });
     }

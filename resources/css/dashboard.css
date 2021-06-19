@@ -211,6 +211,11 @@
     padding-bottom: 40px;
 }
 
+.account span {
+    font-size: 10px;
+    font-weight: var(--poppins-light);
+}
+
 .account h2 {
     font-size: 20px;
     font-weight: var(--poppins-medium);
@@ -281,6 +286,10 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 30px;
+}
+
+.admin__container table {
+    width: 100%;
 }
 
 .admin__container table tr > th {

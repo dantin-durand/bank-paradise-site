@@ -18,11 +18,20 @@ body {
     overflow-x: hidden;
 }
 
+code {
+    background-color: #f7fafc;
+    padding: 5px 10px;
+    border: 1px solid #e0e1e4;
+    color: #585d70;
+    border-radius: 5px;
+    font-family: monospace;
+}
+
 .color-success {
-    color: #58c139;
+    color: #58c139 !important;
 }
 .color-error {
-    color: #d61016;
+    color: #d61016 !important;
 }
 
 .btn {
@@ -88,6 +97,7 @@ body {
 
 .container {
     padding: 50px 10%;
+    min-height: calc(100vh - 117px);
 }
 
 .input {
@@ -152,6 +162,26 @@ textarea::placeholder {
     color: #00000045;
 }
 
+.pagination {
+    display: flex;
+    align-items: center;
+}
+
+.pagination span,
+.pagination a {
+    font-size: 16px !important;
+    padding: 0px 10px;
+    text-decoration: none !important;
+}
+
+.pagination .active {
+    cursor: not-allowed;
+}
+.pagination a[rel="next"] {
+    font-size: 20px !important;
+    color: var(--main-color);
+}
+
 @media screen and (min-width: 1024px) {
     .title {
         font-size: 53px;
@@ -195,6 +225,7 @@ textarea::placeholder {
 
 .formules__sections {
     position: relative;
+    min-height: calc(100vh - 117px);
 }
 
 .formules__sections::before {
@@ -621,6 +652,7 @@ textarea::placeholder {
     padding: 20px 10%;
     grid-template-columns: 1fr;
     gap: 40px;
+    min-height: calc(100vh - 117px);
 }
 
 .news__item {
@@ -677,6 +709,7 @@ textarea::placeholder {
 
 .article__container {
     padding: 40px 10%;
+    min-height: calc(100vh - 117px);
 }
 
 .article__container > div {
@@ -749,7 +782,7 @@ textarea::placeholder {
     font-weight: var(--poppins-medium);
 }
 
-.contact-information__section iframe {
+.contact-information__section #mapgoogle {
     width: 100%;
     height: 300px;
     border-radius: 10px;

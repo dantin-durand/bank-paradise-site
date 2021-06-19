@@ -32,14 +32,17 @@ de la communauté">
             <div class="next__btn"></div>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    @for ($i = 0; $i < 6; $i++) <div class="swiper-slide" style="background: linear-gradient(0deg, rgba(214,16,22,1) 0%, rgba(214,16,22,0) 100%), url('https://via.placeholder.com/200x400');">
-                        <div>
-                            <p>20/04/2021</p>
-                            <h1>Mise en place d'un chat</h1>
+                    @foreach ($latestNews as $news)
+                    <div class="swiper-slide" style="background: linear-gradient(0deg, rgba(214,16,22,1) 0%, rgba(214,16,22,0) 100%), url('https://via.placeholder.com/200x400');">
+                        <a href="#">
+                            <div>
+                                <p>{{$news->created_at}}</p>
+                                <h1>{{$news->title}}</h1>
+                            </div>
+                        </a>
                         </div>
-                </div>
 
-                @endfor
+                    @endforeach
             </div>
         </div>
 

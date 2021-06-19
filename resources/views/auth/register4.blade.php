@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="auth__container">
-    <form method="POST" class="card">
+    <form action="{{ url('/community') }}" method="POST" class="card">
         <h2>Création de<br>la communauté</h2>
         @csrf
         <div class="auth__inputs-container">
@@ -18,16 +18,16 @@
 
             </div>
             <div class="auth__input-container">
-                <input id="email" class="input" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Description">
+                <input id="description" class="input" type="text" name="description" value="{{ old('description') }}" required autocomplete="description" placeholder="Description">
 
-                @error('email')
+                @error('description')
                 <span role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
             </div>
             <div>
-                <a href="/dashboard" class="btn btn-full btn-large">Créer</a>
+                <button type="submit" class="btn btn-full btn-large">Créer</a>
             </div>
         </div>
     </form>
