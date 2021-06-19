@@ -52,12 +52,12 @@
 
             <div style="display: flex; justify-content: space-between">
 
-                <a href="{{ url('/account') }}" class="btn btn-full btn-large">
-                    {{ __('Cancel') }}
+                <a href="{{ url('/account') }}" class="btn btn-line btn-large">
+                    Retour
                 </a>
 
                 <button type="submit" class="btn btn-full btn-large">
-                    {{ __('Update') }}
+                    Modifier
                 </button>
                 <!-- <a href="/register/step2" class="btn btn-full btn-large">Inscription</a> -->
 

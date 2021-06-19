@@ -25,3 +25,4 @@
     {{ $articlesList->links('vendor.pagination.default') }}
 </div>
 @endsection
+
