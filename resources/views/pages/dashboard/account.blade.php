@@ -16,19 +16,21 @@
              </div>
             @if(isset($userDetails->subscriptions[0]))
                 <div>
-                    <p>Formule actuelle: {{ $userDetails->subscriptions[0]->stripe_id }}</p>
+                    <p>Formule actuelle : {{ $planDetails->name }} ({{ number_format($planDetails->price / 100, 2, ',', ' ') }} €)</p>
+                    <p>Depuis le : {{  date_format($userDetails->subscriptions[0]->created_at, 'd/m/Y') }}</p>
                 </div>
-                {{-- <div>
-                    <button class="btn btn-line">Annuler l'abonnement</button>
-                    <button class="btn btn-line">Mettre en pause</button>
-                </div> --}}
+                <div>
+
+                    <a class="btn btn-line" href="{{ auth()->user()->billingPortalUrl(route('account')) }}">Gérer mon abonnement</a>
+
+                </div>
             @else
             <br>
                 <a href="{{route('register.step2')}}" class="btn btn-large btn-full">Choisir un abonnement</a>
             @endif
         </div>
         <div class="account__informations card">
-            
+
         <div>
                 <h2>Informations</h2>
                 <a class="btn" href="{{ url('/account/settings') }}">Modifier</a>

@@ -9,9 +9,16 @@ class CheckoutController extends Controller
 {
     public function index(Request $request)
     {
-        return view("auth.register3", [
-            'intent' => $request->user()->createSetupIntent()
-        ]);
+        $plan = Plan::where('id', $request->formule)->first();
+
+
+        if ($request->filled('formule') && isset($plan)) {
+            return view("auth.register3", [
+                'intent' => $request->user()->createSetupIntent()
+            ]);
+        } else {
+            return redirect()->route('register.step2');
+        }
     }
     public function store(Request $request)
     {
@@ -24,8 +31,6 @@ class CheckoutController extends Controller
 
         $plan = Plan::find($request->plan);
 
-        dd($request);
-
         try {
             $subscription = $request
                 ->user()
@@ -37,11 +42,6 @@ class CheckoutController extends Controller
                 $e->payment->id, 'redirect' => route('payments.error')
             ]);
         }
-
-        if (isset($subscription)) {
-            //TODO SEND MAIL
-        }
-
 
         return redirect()->route('register.step4');
     }

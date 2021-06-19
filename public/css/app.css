@@ -97,6 +97,7 @@ code {
 
 .container {
     padding: 50px 10%;
+    min-height: calc(100vh - 117px);
 }
 
 .input {
@@ -161,6 +162,26 @@ textarea::placeholder {
     color: #00000045;
 }
 
+.pagination {
+    display: flex;
+    align-items: center;
+}
+
+.pagination span,
+.pagination a {
+    font-size: 16px !important;
+    padding: 0px 10px;
+    text-decoration: none !important;
+}
+
+.pagination .active {
+    cursor: not-allowed;
+}
+.pagination a[rel="next"] {
+    font-size: 20px !important;
+    color: var(--main-color);
+}
+
 @media screen and (min-width: 1024px) {
     .title {
         font-size: 53px;
@@ -204,6 +225,7 @@ textarea::placeholder {
 
 .formules__sections {
     position: relative;
+    min-height: calc(100vh - 117px);
 }
 
 .formules__sections::before {
@@ -630,6 +652,7 @@ textarea::placeholder {
     padding: 20px 10%;
     grid-template-columns: 1fr;
     gap: 40px;
+    min-height: calc(100vh - 117px);
 }
 
 .news__item {
@@ -686,6 +709,7 @@ textarea::placeholder {
 
 .article__container {
     padding: 40px 10%;
+    min-height: calc(100vh - 117px);
 }
 
 .article__container > div {

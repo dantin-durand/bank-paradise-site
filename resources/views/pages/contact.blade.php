@@ -9,7 +9,6 @@
         <div class="contact__first-part">
             <input class="input" type="text" name="" id="" placeholder="Nom*" require />
             <input class="input" type="text" name="" id="" placeholder="Prénom*" require />
-            <input class="input" type="text" name="" id="" placeholder="Adresse mail*" require />
             <input class="input" type="text" name="" id="" placeholder="Objet" require />
         </div>
         <textarea name="" id="" placeholder="Message"></textarea>

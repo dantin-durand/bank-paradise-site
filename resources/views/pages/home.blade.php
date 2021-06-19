@@ -33,13 +33,14 @@ de la communauté">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     @foreach ($latestNews as $news)
-                    
                     <div class="swiper-slide" style="background: linear-gradient(0deg, rgba(214,16,22,1) 0%, rgba(214,16,22,0) 100%), url('https://via.placeholder.com/200x400');">
-                        <div>
-                            <p>$news->created_at</p>
-                            <h1>$news->title</h1>
+                        <a href="#">
+                            <div>
+                                <p>{{$news->created_at}}</p>
+                                <h1>{{$news->title}}</h1>
+                            </div>
+                        </a>
                         </div>
-                    </div>
 
                     @endforeach
             </div>

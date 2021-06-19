@@ -51,6 +51,6 @@ class User extends Authenticatable
     }
     public function community()
     {
-        return $this->hasOne(Articles::class);
+        return $this->hasOne(Community::class);
     }
 }

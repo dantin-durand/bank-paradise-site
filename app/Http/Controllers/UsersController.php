@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Articles;
+use App\Models\Plan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +14,9 @@ class UsersController extends Controller
     function renderUserInfo(Request $request)
     {
         $userDetails = User::firstWhere('id', $request->user()->id);
-        return view('pages.dashboard.account', ["userDetails" => $userDetails]);
+        $planDetails = Plan::where('stripe_id', $userDetails->subscriptions[0]->stripe_plan)->first();
+
+        return view('pages.dashboard.account', ["userDetails" => $userDetails, "planDetails" => $planDetails]);
     }
 
     function updateUser(Request $request)

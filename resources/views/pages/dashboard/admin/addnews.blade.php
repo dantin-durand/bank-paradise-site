@@ -47,9 +47,13 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
 <script>
     ClassicEditor
-        .create( document.querySelector( '#body' ) )
+        .create( document.querySelector( '#body' ), {
+        removePlugins: [ 'Image', 'ImageCaption', 'ImageStyle', 'ImageToolbar', 'ImageUpload', 'CKFinder', 'EasyImage', 'MediaEmbed' ]
+    } )
         .catch( error => {
             console.error( error );
         } );
+
+        ClassicEditor.builtinPlugins.map( plugin => { console.log(plugin.pluginName)  });
 </script>
 @endsection

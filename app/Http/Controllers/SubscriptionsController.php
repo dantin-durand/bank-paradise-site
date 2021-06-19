@@ -9,7 +9,8 @@ class SubscriptionsController extends Controller
 {
     function renderSubscriptions(Request $request)
     {
-        $subscriptions = Subscription::query()->pagination(15);
+        $subscriptions = Subscription::query()->paginate(15);
+
         return view('pages.dashboard.admin.subscriptions', ['subscriptions' => $subscriptions]);
     }
 }

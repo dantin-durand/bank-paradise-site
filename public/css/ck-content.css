@@ -53,6 +53,37 @@
 .ck-content .text-small {
     font-size: 0.85em;
 }
+
+.ck-content h2 {
+    font-size: 30px;
+    color: var(--main-color);
+    font-weight: var(--poppins-medium);
+}
+
+.ck-content h3 {
+    font-size: 25px;
+    color: var(--main-color);
+    font-weight: var(--poppins-medium);
+}
+
+.ck-content h4 {
+    font-size: 22px;
+    color: var(--main-color);
+    font-weight: var(--poppins-medium);
+}
+
+.ck-content h5 {
+    font-size: 16px;
+    color: var(--main-color);
+    font-weight: var(--poppins-medium);
+}
+
+.ck-content h6 {
+    font-size: 14px;
+    color: var(--main-color);
+    font-weight: var(--poppins-medium);
+}
+
 /* ckeditor5-font/theme/fontsize.css */
 .ck-content .text-big {
     font-size: 1.4em;

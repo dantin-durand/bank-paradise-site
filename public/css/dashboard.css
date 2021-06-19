@@ -290,6 +290,10 @@
     gap: 30px;
 }
 
+.admin__container table {
+    width: 100%;
+}
+
 .admin__container table tr > th {
     text-align: left;
     padding: 15px;

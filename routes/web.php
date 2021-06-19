@@ -24,16 +24,11 @@ use Illuminate\Support\Facades\Route;
 
 /*---------- NEWS ----------*/
 
-Route::get('/', [ServicesController::class, 'getLatestNews']);
+Route::get('/', [ArticlesController::class, 'getLatestNews']);
 Route::get('/news/{id}', [ArticlesController::class, 'renderArticleDetails']);
 Route::get('/news', [ArticlesController::class, 'renderArticlesList'])->name('news');
+Route::get('/search', [ArticlesController::class, 'renderSearchedArticleList']);
 
-/*-------- REGISTER --------*/
-
-Route::view('/register/step2', 'auth.register2')->name('register.step2');
-Route::get('/register/step3', [CheckoutController::class, 'index'])->middleware('auth');
-Route::post('/register/step3', [CheckoutController::class, 'store'])->middleware('auth');
-Route::view('/register/step4', 'auth.register4')->name('register.step4');
 
 /*--------- ABOUT ----------*/
 
@@ -44,11 +39,29 @@ Route::view('/services', 'pages.services');
 Route::get('/contact', [ContactController::class, 'renderContact']);
 
 
+/*--------- Mail ----------*/
+
+Route::post('/send-mail', [ServicesController::class, 'sendMail']);
+
+
+
 
 /**-----------------------------
  *      [ MEMBER ROUTES ]
  *------------------------------
  */
+
+
+/*-------- LOGIN ----------*/
+
+Route::get('/service', [ServicesController::class, 'redirectUserOnLogin'])->middleware('auth');
+
+/*-------- REGISTER --------*/
+
+Route::view('/register/step2', 'auth.register2')->name('register.step2')->middleware('auth');
+Route::get('/register/step3', [CheckoutController::class, 'index'])->middleware('auth');
+Route::post('/register/step3', [CheckoutController::class, 'store'])->middleware('auth');
+Route::view('/register/step4', 'auth.register4')->middleware('auth')->name('register.step4');
 
 /*-------- ACCOUNT ---------*/
 
@@ -92,16 +105,3 @@ Route::delete('/admin/news/{id}', [ArticlesController::class, 'deleteArticles'])
 /*----- SUBSCRIPTION ------*/
 
 Route::get('/admin/subscriptions', [SubscriptionsController::class, 'renderSubscriptions'])->middleware('auth');
-
-
-
-
-
-/**-----------------------------
- *      [ UTILS ROUTES ]
- *------------------------------
- */
-
-/*-------- LOGIN ----------*/
-
-Route::get('/service', [ServicesController::class, 'redirectUserOnLogin'])->middleware('auth');

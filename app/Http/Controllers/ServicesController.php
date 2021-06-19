@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CustomerCareConfirmationMail;
+use App\Mail\CustomerCareMail;
 use App\Models\Articles;
 use App\Models\User;
 use Illuminate\Http\Request;
-
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegistrationMail;
 use DateTime;
 
 class ServicesController extends Controller
@@ -22,22 +24,28 @@ class ServicesController extends Controller
     function redirectUserOnLogin(Request $request)
     {
 
-        $userCommunity = User::where('user_id', $request->user()->id)->first();
-        dd($userCommunity);
         if (!isset($request->user()->stripe_id) || isset($request->user()->subscriptions[0]->ends_at) && $this->hasSubcriptionEnded($request)) {
             return redirect()->route('register.step2');
-        }
-        if (!isset($request->user()->community_id)) {
+        } else if (!isset($request->user()->community->name)) {
             return redirect()->route('register.step4');
         }
-        return redirect()->route('admin.users');
+        return redirect()->route('dashboard');
     }
 
-
-    function getLatestNews(Request $request)
+    function sendEmail(Request $request)
     {
-        $latestNews = Articles::take(5)->where('should_be_shown', 1)->orderBy('id', 'desc')->get();
 
-        return view('pages.home', ['latestNews' => $latestNews]);
+        $customerCareParams = [
+            'subject' => 'Customer Mail',
+            'object' => $request->object,
+            'lastname' => $request->lastname,
+            'firstname' => $request->firstname,
+        ];
+
+        $confirmationEmailSent = [
+            'subject' => 'Customer Support : Email Confirmation ',
+        ];
+        Mail::to()->send(new CustomerCareMail($customerCareParams));
+        Mail::to($request->user()->email)->send(new CustomerCareConfirmationMail($confirmationEmailSent));;
     }
 }

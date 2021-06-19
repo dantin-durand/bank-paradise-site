@@ -4,8 +4,10 @@ namespace App\Http\Controllers\api;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\Articles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class TokenController extends Controller
 {
@@ -59,6 +61,9 @@ class TokenController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        Mail::to($request->email)
+            ->subject('Bank-Paradise: Enregistrement')
+            ->send(new RegistrationMail());;
 
         $token = $user->createToken($request->device_name)->plainTextToken;
 
@@ -80,5 +85,19 @@ class TokenController extends Controller
         $request->user()->currentAccessToken()->delete();
 
         return response()->json(null, 204);
+    }
+
+    public function contactSupport(Request $request)
+    {
+        Mail::to($request->email)
+            ->subject('Bank-Paradise: Enregistrement')
+            ->send(new CustomerCareMail());;
+    }
+
+    public function getNews(Request $request)
+    {
+        $newsList = Articles::get();
+
+        return response()->json($newsList, 200);
     }
 }

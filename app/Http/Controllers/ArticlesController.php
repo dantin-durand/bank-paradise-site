@@ -27,6 +27,29 @@ class ArticlesController extends Controller
         }
     }
 
+    function getLatestNews(Request $request)
+    {
+        $latestNews = Articles::take(5)->where('should_be_shown', 1)->orderBy('id', 'desc')->get();
+
+        return view('pages.home', ['latestNews' => $latestNews]);
+    }
+
+
+    function renderSearchedArticleList(Request $request)
+    {
+
+        // Get the search value from the request
+        $search = $request->input('search');
+
+        // Search in the title and body columns from the posts table
+        $articlesList = Articles::where('title', 'LIKE', "%{$search}%")
+            ->orWhere('body', 'LIKE', "%{$search}%")
+            ->paginate(6);
+
+        // Return the search view with the resluts compacted
+        return view('pages.articles', ['articlesList' => $articlesList]);
+    }
+
 
     function renderArticleDetails(Request $request)
     {
