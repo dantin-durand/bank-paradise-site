@@ -14,8 +14,7 @@
                 <h2>Abonnement</h2>
                 {{-- <a href="/register/step2" class="btn btn-full">Changer de formule</a> --}}
              </div>
-             <p>Request::url(): {{ Request::url() }}</p>
-             <p>route('account'): {{ route('account') }}</p>
+
             @if(isset($userDetails->subscriptions[0]))
                 <div>
                     <p>Formule actuelle : {{ $planDetails->name }} ({{ number_format($planDetails->price / 100, 2, ',', ' ') }} €)</p>
