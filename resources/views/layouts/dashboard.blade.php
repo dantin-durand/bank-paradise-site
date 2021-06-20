@@ -9,10 +9,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/navbar/default.css') }}">
+    <link rel="stylesheet" href="{{ config('app.env') === 'production' ? secure_asset('css/reset.css') : asset('css/reset.css') }}">
+    <link rel="stylesheet" href="{{ config('app.env') === 'production' ? secure_asset('css/app.css') : asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ config('app.env') === 'production' ? secure_asset('css/navbar/default.css') : asset('css/navbar/default.css') }}">
+    <link rel="stylesheet" href="{{ config('app.env') === 'production' ? secure_asset('css/dashboard.css') : asset('css/dashboard.css') }}">
 
 </head>
 
@@ -21,7 +21,7 @@
     @yield('content')
     <x-footer type="authenticate" />
     <script src="https://kit.fontawesome.com/ee9709fe10.js" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/navbar.js') }}"></script>
+    <script src="{{ config('app.env') === 'production' ? secure_asset('js/navbar.js') : asset('js/navbar.js') }}"></script>
 </body>
 
 </html>
