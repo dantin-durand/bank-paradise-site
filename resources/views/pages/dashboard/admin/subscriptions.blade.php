@@ -4,7 +4,7 @@
 <div class="container account">
     <h1>Espace administrateur</h1>
     <div class="admin__container">
-        <x-navbar-admin activePage="users" />
+        <x-navbar-admin activePage="subscriptions" />
         <table class="card">
             <thead>
                 <tr>
@@ -16,7 +16,8 @@
             <tbody>
 
                 @foreach ( $subscriptions as $subscription)<tr>
-                    <td>{{ $subscription->user->email }}</td>
+
+                    <td><a href="{{ $subscription->user->billingPortalUrl(Request::url()) }}">{{ $subscription->user->email }}</a></td>
                     <td>{{ date_format($subscription->created_at, 'd/m/Y') }}</td>
                     <td><code>{{ $subscription->stripe_plan }}</code></td>
                 </tr>

@@ -148,14 +148,71 @@ textarea::placeholder {
     font-size: 16px !important;
     padding: 0px 10px;
     text-decoration: none !important;
+    font-weight: var(--poppins-medium);
+}
+
+.pagination a {
+    color: var(--main-color);
 }
 
 .pagination .active {
     cursor: not-allowed;
 }
-.pagination a[rel="next"] {
-    font-size: 20px !important;
+.pagination *[rel="next"],
+.pagination *[rel="prev"] {
+    font-size: 16px !important;
     color: var(--main-color);
+    padding: 0px 10px !important;
+}
+
+.pagination *[rel="next"] > span,
+.pagination *[rel="prev"] > span {
+    padding: 0px !important;
+}
+
+.pagination .disabled {
+    opacity: 0.5 !important;
+    color: #000 !important;
+    cursor: not-allowed;
+}
+
+@keyframes popfade {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    95% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+}
+
+.alert {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    padding: 20px 25px;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #00000030;
+    animation: popfade 3s forwards ease;
+}
+
+.alert-success {
+    background-color: #58c139 !important;
+}
+
+.alert-error {
+    background-color: #d61016 !important;
 }
 
 @media screen and (min-width: 1024px) {
@@ -595,7 +652,7 @@ textarea::placeholder {
 .header__container > h1 {
     padding: 0px;
 }
-.header__container > input {
+.header__container input {
     height: 40px;
     background-image: url("../img/search-icon.svg");
     background-position: center right 10px;
@@ -605,11 +662,13 @@ textarea::placeholder {
     box-shadow: 0px 3px 6px #00000021;
     padding: 10px;
     outline: none;
+    width: 100%;
 }
-.header__container > input::placeholder {
+.header__container input::placeholder {
     font-size: 14px;
     font-weight: var(--poppins-medium);
-    color: #00000045;
+    color: #0000007e;
+    font-family: var(--poppins);
 }
 
 .news__container {
@@ -690,10 +749,6 @@ textarea::placeholder {
 @media screen and (min-width: 1024px) {
     .header__container {
         grid-template-columns: 2fr 1fr;
-    }
-
-    .header__container > input {
-        max-width: 330px;
     }
     .news__container {
         grid-template-columns: 1fr 1fr 1fr;

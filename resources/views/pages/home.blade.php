@@ -36,7 +36,7 @@ de la communauté">
                     <div class="swiper-slide" style="background: linear-gradient(0deg, rgba(214,16,22,1) 0%, rgba(214,16,22,0) 100%), url('{{$news->banner}}');">
                         <a href="#">
                             <div>
-                                <p>{{$news->created_at}}</p>
+                                <p>{{ date_format($news->created_at, 'd/m/Y') }}</p>
                                 <h1>{{$news->title}}</h1>
                             </div>
                         </a>

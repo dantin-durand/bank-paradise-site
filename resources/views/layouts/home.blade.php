@@ -22,6 +22,7 @@
     <script src="{{ asset('js/navbar.js') }}"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
+
         const swiper = new Swiper('.swiper-container', {
             loop: true,
             navigation: {
@@ -29,7 +30,18 @@
                 prevEl: '.prev__btn',
             },
             slidesPerView: 3,
-            spaceBetween: 30
+            spaceBetween: 30,
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                720: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                }
+            }
         });
     </script>
 </body>

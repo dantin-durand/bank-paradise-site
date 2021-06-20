@@ -9,7 +9,7 @@
     <div class="admin__container">
         <x-navbar-admin activePage="news" />
         <div>
-
+            @include('flash-message')
             <table class="card" style="widows: 100%">
                 <thead>
                     <tr>
