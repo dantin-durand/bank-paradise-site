@@ -19,7 +19,7 @@
     <x-navbar-default />
     @yield('content')
     <x-footer type="default" />
-    <script src="{{ asset('js/navbar.js') }}"></script>
+    <script src="{{ config('app.env') === 'production' ? secure_asset('js/navbar.js') : asset('js/navbar.js') }}"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
 
