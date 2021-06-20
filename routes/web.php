@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ArticlesController::class, 'getLatestNews']);
 Route::get('/news/{id}', [ArticlesController::class, 'renderArticleDetails']);
 Route::get('/news', [ArticlesController::class, 'renderArticlesList'])->name('news');
-Route::get('/search', [ArticlesController::class, 'renderSearchedArticleList']);
+// Route::post('/news', [ArticlesController::class, 'renderArticlesList'])->name('articles.search');
 
 
 /*--------- ABOUT ----------*/

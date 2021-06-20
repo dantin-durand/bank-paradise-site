@@ -49,10 +49,12 @@
                 <input id="password-confirm" type="password" name="password_confirmation" value="" class="input" required autocomplete="new-password" placeholder="{{ __('Confirm Password') }}">
 
             </div>
-
+                @if (auth()->user()->is_admin)
+                <label for="is_admin"><input type="checkbox" name="is_admin" id="is_admin" {{ $userInfo->is_admin ? " checked" : ""}}> Administrateur</label>
+                @endif
             <div style="display: flex; justify-content: space-between">
 
-                <a href="{{ url('/account') }}" class="btn btn-line btn-large">
+                <a href="{{ route('account') }}" class="btn btn-line btn-large">
                     Retour
                 </a>
 

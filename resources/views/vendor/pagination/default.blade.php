@@ -3,12 +3,12 @@
         <ul class="pagination" style="display:flex;">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
-                <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
-                    <span aria-hidden="true">&lsaquo;</span>
+                <li class="disabled" aria-disabled="true" rel="prev" aria-label="@lang('pagination.previous')">
+                    <i class="fas fa-chevron-left"></i>
                 </li>
             @else
                 <li>
-                    <a href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">&lsaquo;</a>
+                    <a href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')"><i class="fas fa-chevron-left"></i></a>
                 </li>
             @endif
 
@@ -34,11 +34,11 @@
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
                 <li>
-                    <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">&rsaquo;</a>
+                    <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')"><i class="fas fa-chevron-right"></i></a>
                 </li>
             @else
-                <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
-                    <span aria-hidden="true">&rsaquo;</span>
+                <li class="disabled" aria-disabled="true" rel="next" aria-label="@lang('pagination.next')">
+                    <span aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
                 </li>
             @endif
         </ul>

@@ -11,6 +11,20 @@ class ArticlesController extends Controller
 {
     function renderArticlesList(Request $request)
     {
+        $search = $request->input('search');
+
+        if (strlen($search) > 0) {
+            // $articlesList = Articles::where('title', 'LIKE', "%{$search}%")
+            //     ->orWhere('body', 'LIKE', "%{$search}%")
+            //     ->orWhere('should_be_shown', 1)
+            //     ->paginate(6);
+            $articlesList = Articles::where([
+                ['title', 'LIKE', "%{$search}%"],
+                ['should_be_shown', '=', "1"],
+            ])->paginate(6);
+
+            return view('pages.articles', ['articlesList' => $articlesList]);
+        }
 
         $articlesList = Articles::where('should_be_shown', 1)->paginate(6);
         return view('pages.articles', ['articlesList' => $articlesList]);
@@ -148,8 +162,12 @@ class ArticlesController extends Controller
             $articlesToShow->update([
                 'should_be_shown' => !$articlesToShow->should_be_shown
             ]);
+
+            $isShow = !$articlesToShow->should_be_shown == 0 ? 'affiché' : 'masqué';
+
+            return redirect()->route('admin.articles')->with('success', 'Article ' . $isShow . ' avec succès.');
         }
-        return redirect()->route('admin.articles');
+        return redirect()->route('account');
     }
 
     function deleteArticles(Request $request)
