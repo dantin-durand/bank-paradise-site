@@ -62,11 +62,12 @@ Route::view('/register/step2', 'auth.register2')->name('register.step2')->middle
 Route::get('/register/step3', [CheckoutController::class, 'index'])->middleware('auth');
 Route::post('/register/step3', [CheckoutController::class, 'store'])->middleware('auth');
 Route::view('/register/step4', 'auth.register4')->middleware('auth')->name('register.step4');
+Route::view('/payment/error', 'payments.error')->name('payments.error');
 
 /*-------- ACCOUNT ---------*/
 
 Route::get('/account', [UsersController::class, 'renderUserInfo'])->middleware('auth');
-Route::get('/account/settings', [UsersController::class, 'renderUserEditForm'])->middleware('auth');
+Route::get('/account/settings', [UsersController::class, 'renderUserEditForm'])->middleware('auth')->name('settings');
 Route::patch('/account', [UsersController::class, 'updateUserInfo'])->middleware('auth', 'subscribed')->name('account');
 
 /*------- COMMUNITY --------*/

@@ -290,8 +290,16 @@
     gap: 30px;
 }
 
+.table-container {
+    overflow-x: auto;
+    margin: -10px 0 -10px -10px;
+    padding: 10px;
+}
+
 .admin__container table {
     width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 .admin__container table tr > th {
@@ -307,22 +315,6 @@
 
 .admin__container table tr > td a {
     color: #000;
-}
-
-.admin__container table tr > th:nth-child(4) {
-    display: none;
-}
-
-.admin__container table tr > td:nth-child(4) {
-    display: none;
-}
-
-.admin__container table tr > th:nth-child(3) {
-    display: none;
-}
-
-.admin__container table tr > td:nth-child(3) {
-    display: none;
 }
 
 .admin__container table tr:nth-child(even) {

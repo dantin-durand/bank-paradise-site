@@ -2,9 +2,14 @@
 
 @section('content')
 <div class="container account">
+    @if (Auth::User()->is_admin === 1 && Request::url() !== route('account'))
+    <a href="{{ route('admin.users') }}" class="back-btn"><i class="fas fa-chevron-left"></i> retour</a>
+    @endif
     <div class="account__title">
-        <h1>Compte</h1>
-        @if (Auth::User()->is_admin === 1 && Request::url() == route('account'))
+        @if (Auth::User()->is_admin === 1 && Request::url() !== route('account'))
+        <h1>Compte de {{ $userDetails->firstname }}</h1>
+        @elseif (Auth::User()->is_admin === 1)
+            <h1>Compte</h1>
             <a class="btn btn-full" href="/admin/users">Mode admin</a>
         @endif
     </div>
@@ -25,9 +30,9 @@
                 </div>
                 <div>
                     @if (Request::url() == route('account'))
-                    <a class="btn btn-line" href="{{ $userDetails->billingPortalUrl(Request::url()) }}">Gérer l'abonnement</a>
-                    @else 
                     <a class="btn btn-line" href="{{ $userDetails->billingPortalUrl(Request::url()) }}">Gérer mon abonnement</a>
+                    @else 
+                    <a class="btn btn-line" href="{{ $userDetails->billingPortalUrl(Request::url()) }}">Gérer l'abonnement</a>
                     @endif
                 </div>
             @else
@@ -43,7 +48,11 @@
 
         <div>
                 <h2>Informations</h2>
-                <a class="btn" href="{{ url('/account/settings') }}">Modifier</a>
+                @if (Auth::User()->is_admin === 1 && Request::url() !== route('account'))
+                <a class="btn" href="{{ route('admin.users.edit', [$userDetails->id]) }}">Modifier</a>
+                @else
+                <a class="btn" href="{{ route('settings') }}">Modifier</a>
+                @endif
             </div>
             <ul>
                 <li>Adresse mail: {{ $userDetails->email }}</li> 

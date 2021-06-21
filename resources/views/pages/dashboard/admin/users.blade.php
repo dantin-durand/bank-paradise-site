@@ -5,7 +5,7 @@
     <h1>Espace administrateur</h1>
     <div class="admin__container">
         <x-navbar-admin activePage="users" />
-        <div>
+        <div class="table-container">
             @include('flash-message')
             <table class="card">
                 <thead>
@@ -22,7 +22,7 @@
                         <td><a href="#">{{ $user->email }}</a> </td>
                         <td>{{ $user->created_at }}</td>
                         <td>
-                            <a href="{{ route('admin.user', [$user->id] ) }}"><i class="fas fa-eye"></i></a>
+                            <a href="{{ route('admin.user', [$user->id] ) }}"><i class="fas fa-external-link-alt"></i></a>
                             <a href="{{ route('admin.users.edit', [$user->id ]) }}"><i class="fas fa-user-edit"></i></a>
                             <a href="#" onclick="event.preventDefault();document.getElementById('delete-user-form-{{$user->id}}').submit();" class="color-error"><i class="fas fa-trash"></i></a>
                             <form style="display: none;" method="POST" id="delete-user-form-{{$user->id}}" action="{{ route('admin.users.delete', [$user->id]) }}"">

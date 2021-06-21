@@ -19,7 +19,7 @@
     @yield('content')
     <x-footer type="authenticate" />
     <script src="{{ config('app.env') === 'production' ? secure_asset('js/navbar.js') : asset('js/navbar.js') }}"></script>
-
+    <script src="https://kit.fontawesome.com/ee9709fe10.js" crossorigin="anonymous"></script>
 
 </body>
 
