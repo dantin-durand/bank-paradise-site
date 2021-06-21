@@ -61,9 +61,9 @@ class TokenController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        Mail::to($request->email)
-            ->subject('Bank-Paradise: Enregistrement')
-            ->send(new RegistrationMail());;
+        // Mail::to($request->email)
+        //     ->subject('Bank-Paradise: Enregistrement')
+        //     ->send(new RegistrationMail());
 
         $token = $user->createToken($request->device_name)->plainTextToken;
 
