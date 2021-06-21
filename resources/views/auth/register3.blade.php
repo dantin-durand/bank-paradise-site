@@ -14,7 +14,7 @@
         <br>
         <div class="auth__input-container">
             
-            <input id="name" class="input" type="text" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Nom') }}">
+            <input id="name" class="input" type="text" name="name" value="{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}" required autocomplete="name" autofocus placeholder="{{ __('Nom') }}">
             
             @error('name')
             <span role="alert">
@@ -53,7 +53,9 @@
         </div>
     @endif
         <!-- We'll put the error messages in this element -->
-        <div id="card-errors" role="alert"></div>
+        <span id="card-errors" role="alert"></span>
+        <br>
+        <br>
         <button type="submit" id="card-button" class="btn btn-large btn-full" data-secret="{{ $intent->client_secret }}">Payer</button>
         <!-- <a href="/register/step4" class="btn btn-large btn-full">Payer</a> -->
     </form>
@@ -81,7 +83,7 @@
     const cardHolderName = document.getElementById('name');
     const cardButton = document.getElementById('card-button');
     const clientSecret = cardButton.dataset.secret;
-
+    
     cardElement.on('change', ({
         error
     }) => {
@@ -92,12 +94,19 @@
             displayError.textContent = '';
         }
     });
-// c'est gérer en js par stripe en gros ici dans tout le code js on verif si la carte est bonne avec stripe et après ça nous chie un genre de token pour le paiement et ce token on le passe à laravel dans le controller grace à la request
+
     var form = document.getElementById('payment-form');
+
 
     cardButton.addEventListener('click', async (e) => {
         e.preventDefault();
+        let displayError = document.getElementById('card-errors');
 
+        if(cardHolderName.value.length <= 0) {
+            return displayError.textContent = "Veuillez saisir vore nom";
+        }else {
+            displayError.textContent = '';
+        }
         const { setupIntent, error } = await stripe.confirmCardSetup(
             clientSecret, {
                 payment_method: {
@@ -109,6 +118,7 @@
 
         if (error) {
             console.log(error);
+            displayError.textContent = error.message;
         } else {
             console.log(setupIntent);
             let paymentMethod = document.createElement('input');

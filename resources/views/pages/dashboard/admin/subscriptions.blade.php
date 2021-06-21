@@ -5,6 +5,7 @@
     <h1>Espace administrateur</h1>
     <div class="admin__container">
         <x-navbar-admin activePage="subscriptions" />
+        <div class="table-container">
         <table class="card">
             <thead>
                 <tr>
@@ -26,6 +27,7 @@
         </table>
 
         {{ $subscriptions->links('vendor.pagination.default') }}
+        </div>
     </div>
 </div>
 @endsection

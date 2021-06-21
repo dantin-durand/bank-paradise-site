@@ -54,8 +54,12 @@ class UsersController extends Controller
 
     function renderUserList(Request $request)
     {
-        $userList = User::get();
-        return view('pages.dashboard.admin.users', ['userList' => $userList]);
+        if ($request->user()->is_admin) {
+            $userList = User::get();
+            return view('pages.dashboard.admin.users', ['userList' => $userList]);
+        } else {
+            return redirect()->route('account');
+        }
     }
 
 
@@ -72,7 +76,7 @@ class UsersController extends Controller
             $userInfo = User::firstWhere('id', $id);
             return view('pages.dashboard.settings', ['userInfo' => $userInfo]);
         } else {
-            return redirect()->route('admin.users');
+            return redirect()->route('account');
         }
     }
 
@@ -93,7 +97,6 @@ class UsersController extends Controller
 
     function renderUserDetails(Request $request, $id)
     {
-
         if ($request->user()->is_admin) {
             $userDetails = User::firstWhere('id', $id);
             if (isset($userDetails->subscriptions[0]->stripe_plan)) {
@@ -104,7 +107,7 @@ class UsersController extends Controller
 
             return view('pages.dashboard.account', ["userDetails" => $userDetails, "planDetails" => $planDetails]);
         } else {
-            return redirect()->route('admin.users');
+            return redirect()->route('account');
         }
     }
 }

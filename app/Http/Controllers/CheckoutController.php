@@ -42,7 +42,7 @@ class CheckoutController extends Controller
                 $e->payment->id, 'redirect' => route('payments.error')
             ]);
         }
-
-        return redirect()->route('register.step4');
+        return view('payments.success');
+        // return redirect()->route('register.step4');
     }
 }
