@@ -8,9 +8,16 @@ use App\Models\Articles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use DateTime;
 
 class TokenController extends Controller
 {
+    function hasSubcriptionEnded($user)
+    {
+        $date = new DateTime();
+        $subcriptionDate = $user->subscriptions[0]->ends_at;
+        return $date->getTimestamp() >= $subcriptionDate->getTimestamp();
+    }
 
     public function login(Request $request)
     {
@@ -32,9 +39,18 @@ class TokenController extends Controller
 
         $token = $user->createToken($request->device_name)->plainTextToken;
 
+        if (!isset($user->stripe_id) || isset($user->subscriptions[0]->ends_at) && $this->hasSubcriptionEnded($user)) {
+            $current_step = 2;
+        } else if (!isset($user->community->name)) {
+            $current_step = 4;
+        } else {
+            $current_step = 0;
+        }
+
         return response()->json([
             "token" => $token,
-            "user" => $user
+            "user" => $user,
+            "current_step" => $current_step,
         ], 200);
     }
 
@@ -87,17 +103,17 @@ class TokenController extends Controller
         return response()->json(null, 204);
     }
 
-    public function contactSupport(Request $request)
-    {
-        Mail::to($request->email)
-            ->subject('Bank-Paradise: Enregistrement')
-            ->send(new CustomerCareMail());;
-    }
+    // public function contactSupport(Request $request)
+    // {
+    //     Mail::to($request->email)
+    //         ->subject('Bank-Paradise: Enregistrement')
+    //         ->send(new CustomerCareMail());;
+    // }
 
-    public function getNews(Request $request)
-    {
-        $newsList = Articles::get();
+    // public function getNews(Request $request)
+    // {
+    //     $newsList = Articles::get();
 
-        return response()->json($newsList, 200);
-    }
+    //     return response()->json($newsList, 200);
+    // }
 }
