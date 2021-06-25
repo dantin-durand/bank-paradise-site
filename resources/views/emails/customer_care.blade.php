@@ -6,10 +6,9 @@
     <body>
 <h2>CUSTOMER:</h2>
 <div>
-    <p> User ID: {{ $user->id }}</p>
-    <p> User Firstname: {{ $user->firstname }} </p>
-    <p> User Lastname: {{ $user->lastname }} </p>
-    <p> Message: {{ $mail->body }} </p>
+    <p> User Firstname: {{ $params["firstname"] }} </p>
+    <p> User Lastname: {{ $params["lastname"] }} </p>
+    <p> Message: {{ $params["body"] }} </p>
 </div>
 </body>
 </html>

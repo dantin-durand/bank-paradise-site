@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class CustomerCareMail extends Mailable
+class SubscriptionEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,6 +28,6 @@ class CustomerCareMail extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->params['subject'])->view('emails.customer_care', ['params' => $this->params]);
+        return $this->subject($this->params['subject'])->view('emails.subscription_confirmation', ['params' => $this->params]);
     }
 }

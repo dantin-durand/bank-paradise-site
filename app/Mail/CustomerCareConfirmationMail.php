@@ -28,6 +28,6 @@ class CustomerCareConfirmationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->params['subject'])->view('emails.customer_care_confirmation');
+        return $this->subject($this->params['subject'])->view('emails.customer_care_confirmation', ['params' => $this->params]);
     }
 }

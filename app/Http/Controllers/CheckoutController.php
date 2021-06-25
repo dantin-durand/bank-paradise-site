@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SubscriptionEmail;
 use App\Models\Plan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
@@ -37,6 +39,15 @@ class CheckoutController extends Controller
                 ->newSubscription('default', $plan->stripe_id)
                 ->withCoupon($request->coupon)
                 ->create($request->payment_method);
+
+
+            $subscriptionConfirmationParams = [
+                'subject' => 'New Subscription',
+                'user_id' => $request->user()->id,
+                'user_firstname' => $request->user()->firstname,
+                'user_lastname' => $request->user()->lastname,
+            ];
+            Mail::to('noreply@bank-paradise.com')->send(new SubscriptionEmail($subscriptionConfirmationParams));
         } catch (\Laravel\Cashier\Exceptions\IncompletePayment $e) {
             return redirect()->route('cashier.payment', [
                 $e->payment->id, 'redirect' => route('payments.error')

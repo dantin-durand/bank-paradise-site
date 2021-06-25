@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Mail\CustomerCareConfirmationMail;
 use App\Mail\CustomerCareMail;
-use App\Models\Articles;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\RegistrationMail;
 use DateTime;
 
 class ServicesController extends Controller
@@ -36,16 +33,19 @@ class ServicesController extends Controller
     {
 
         $customerCareParams = [
-            'subject' => 'Customer Mail',
             'object' => $request->object,
+            'email' => $request->email,
             'lastname' => $request->lastname,
             'firstname' => $request->firstname,
+            'body' => $request->body,
         ];
 
         $confirmationEmailSent = [
             'subject' => 'Customer Support : Email Confirmation ',
         ];
-        Mail::to()->send(new CustomerCareMail($customerCareParams));
-        Mail::to($request->user()->email)->send(new CustomerCareConfirmationMail($confirmationEmailSent));;
+        Mail::to('noreply@bank-paradise.com')->send(new CustomerCareMail($customerCareParams));
+        Mail::to($request->email)->send(new CustomerCareConfirmationMail($confirmationEmailSent));
+
+        return redirect()->route('/contact');
     }
 }
