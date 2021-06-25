@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Mail\CustomerCareMail;
 use App\Models\Articles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -81,16 +82,27 @@ class TokenController extends Controller
         //     ->subject('Bank-Paradise: Enregistrement')
         //     ->send(new RegistrationMail());
 
+        if (!isset($user->stripe_id) || isset($user->subscriptions[0]->ends_at) && $this->hasSubcriptionEnded($user)) {
+            $current_step = 2;
+        } else if (!isset($user->community->name)) {
+            $current_step = 4;
+        } else {
+            $current_step = 0;
+        }
+
+
         $token = $user->createToken($request->device_name)->plainTextToken;
 
         return response()->json([
             "token" => $token,
-            "user" => $user
+            "user" => $user,
+            "current_step" => $current_step,
         ], 201);
     }
 
     public function account(Request $request)
     {
+
         return response()->json([
             $request->user()
         ], 200);
@@ -103,17 +115,10 @@ class TokenController extends Controller
         return response()->json(null, 204);
     }
 
-    // public function contactSupport(Request $request)
-    // {
-    //     Mail::to($request->email)
-    //         ->subject('Bank-Paradise: Enregistrement')
-    //         ->send(new CustomerCareMail());;
-    // }
+    public function getNews(Request $request)
+    {
+        $newsList = Articles::get();
 
-    // public function getNews(Request $request)
-    // {
-    //     $newsList = Articles::get();
-
-    //     return response()->json($newsList, 200);
-    // }
+        return response()->json($newsList, 200);
+    }
 }

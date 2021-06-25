@@ -61,7 +61,6 @@
                 <button type="submit" class="btn btn-full btn-large">
                     Modifier
                 </button>
-
             </div>
         </div>
     </form>
