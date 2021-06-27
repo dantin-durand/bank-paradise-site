@@ -24,7 +24,7 @@ class UsersController extends Controller
 
 
 
-        return view('pages.dashboard.account', ["userDetails" => $userDetails, "planDetails" => $planDetails]);
+        return view('pages.dashboard.account', ["userDetails" => $userDetails, "planDetails" => $planDetails, 'is_admin_page' => 0]);
     }
 
     function updateUser(Request $request, $id)
@@ -113,7 +113,7 @@ class UsersController extends Controller
                 $planDetails = [];
             }
 
-            return view('pages.dashboard.account', ["userDetails" => $userDetails, "planDetails" => $planDetails]);
+            return view('pages.dashboard.account', ["userDetails" => $userDetails, "planDetails" => $planDetails, 'is_admin_page' => 1]);
         } else {
             return redirect()->route('account');
         }
