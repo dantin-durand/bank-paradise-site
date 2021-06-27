@@ -1,5 +1,8 @@
 @extends('layouts.auth')
 
+@section('title', 'Connexion')
+@section('description', "Formulaire de connexion")
+
 @section('content')
 <div class="auth__container">
     <form method="POST" action="{{ route('login') }}" class="card">

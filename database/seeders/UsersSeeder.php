@@ -27,7 +27,7 @@ class UsersSeeder extends Seeder
                 'firstname' => $name,
                 'lastname' => $name,
                 'email' => $email,
-                'password' => Hash::make('patate'),
+                'password' => Hash::make('Admin123!'),
             ]);
         }
     }

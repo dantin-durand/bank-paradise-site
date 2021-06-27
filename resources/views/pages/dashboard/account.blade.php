@@ -1,5 +1,8 @@
 @extends('layouts.dashboard')
 
+@section('title', 'Compte')
+@section('description', "Les détails du compte d'un utilisateur")
+
 @section('content')
 <div class="container account">
     @if (Auth::User()->is_admin === 1 && Request::url() !== route('account'))

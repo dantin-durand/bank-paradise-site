@@ -45,7 +45,7 @@
         </div>
         <div class="formules__item">
             <div>
-                <h1>1.99€</h1>
+                <h1>5.99€</h1>
                 <p>Nouvel arrivant</p>
                 <div class="formule_spacer"></div>
                 <ul>

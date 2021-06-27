@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Articles;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use DateTime;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 
@@ -14,19 +15,19 @@ class ArticlesController extends Controller
         $search = $request->input('search');
 
         if (strlen($search) > 0) {
-            // $articlesList = Articles::where('title', 'LIKE', "%{$search}%")
-            //     ->orWhere('body', 'LIKE', "%{$search}%")
-            //     ->orWhere('should_be_shown', 1)
-            //     ->paginate(6);
             $articlesList = Articles::where([
                 ['title', 'LIKE', "%{$search}%"],
                 ['should_be_shown', '=', "1"],
-            ])->paginate(6);
+            ])
+                ->whereDate('release_date', '<=', new DateTime())
+                ->paginate(6);
 
             return view('pages.articles', ['articlesList' => $articlesList]);
         }
 
-        $articlesList = Articles::where('should_be_shown', 1)->paginate(6);
+        $articlesList = Articles::where('should_be_shown', 1)
+            ->whereDate('release_date', '<=', new DateTime())
+            ->paginate(6);
         return view('pages.articles', ['articlesList' => $articlesList]);
     }
 
@@ -43,7 +44,10 @@ class ArticlesController extends Controller
 
     function getLatestNews(Request $request)
     {
-        $latestNews = Articles::take(5)->where('should_be_shown', 1)->orderBy('id', 'desc')->get();
+        $latestNews = Articles::take(5)->where('should_be_shown', 1)
+            ->whereDate('release_date', '<=', new DateTime())
+            ->orderBy('id', 'desc')
+            ->get();
 
         return view('pages.home', ['latestNews' => $latestNews]);
     }
@@ -56,8 +60,9 @@ class ArticlesController extends Controller
         $search = $request->input('search');
 
         // Search in the title and body columns from the posts table
-        $articlesList = Articles::where('title', 'LIKE', "%{$search}%")
-            ->orWhere('body', 'LIKE', "%{$search}%")
+        $articlesList = Articles::whereDate('release_date', '<=', new DateTime())
+            ->where('title', 'LIKE', "%{$search}%")
+            //->orWhere('body', 'LIKE', "%{$search}%")
             ->paginate(6);
 
         // Return the search view with the resluts compacted
@@ -69,7 +74,10 @@ class ArticlesController extends Controller
     {
         $articleDetails = Articles::firstWhere('id', $request->id);
 
-        return view('pages.article', ['articleDetails' => $articleDetails]);
+        if (isset($articleDetails)) {
+            return view('pages.article', ['articleDetails' => $articleDetails]);
+        }
+        return view('errors.404');
     }
 
     function renderCreateArticleForm(Request $request)
@@ -118,6 +126,7 @@ class ArticlesController extends Controller
                 'banner_id' => $result->getPublicId(),
                 'should_be_shown' => 1,
                 'user_id' => $request->user()->id,
+                'release_date' => $request->releaseDate,
             ]);
             return redirect()->route('admin.articles');
         }
@@ -130,6 +139,7 @@ class ArticlesController extends Controller
                 'title' => 'required',
                 'banner' => 'image',
                 'body' => 'required',
+                'releaseDate' => 'required'
             ]);
 
             $articlesToUpdate = Articles::firstWhere('id', $request->id);
@@ -149,6 +159,7 @@ class ArticlesController extends Controller
                 'banner' => $banner,
                 'banner_id' => $banner_id,
                 'body' => $request->body,
+                'release_date' => $request->releaseDate,
             ]);
         }
         return redirect()->route('admin.articles');

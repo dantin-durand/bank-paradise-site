@@ -28,6 +28,8 @@ class CustomerCareMail extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->params['subject'])->view('emails.customer_care', ['params' => $this->params]);
+        return $this->subject($this->params['subject'])
+            ->from($address = $this->params['mail'], $name = $this->params['name'])
+            ->view('emails.customer_care', ['params' => $this->params]);
     }
 }

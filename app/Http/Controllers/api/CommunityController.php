@@ -23,6 +23,9 @@ class CommunityController extends Controller
         ]);
 
         $community = Community::where('name', $request->name)->get();
-        return response()->json(['message' => 'Successfuly created community', 'community' => $community], 200);
+        if (isset($community)) {
+            return response()->json(['message' => 'Successfuly created community', 'community' => $community], 200);
+        }
+        return response()->json(['message' => 'Vous ne pouvez pas créer de communauté sans être connecté à votre compte'], 401);
     }
 }

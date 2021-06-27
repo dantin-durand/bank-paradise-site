@@ -5,11 +5,14 @@ namespace App\Http\Controllers\api;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Mail\CustomerCareMail;
+use App\Mail\RegistrationMail;
 use App\Models\Articles;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use DateTime;
+use Illuminate\Support\Facades\Config;
 
 class TokenController extends Controller
 {
@@ -76,11 +79,16 @@ class TokenController extends Controller
             'lastname' => $request->lastname,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+
         ]);
 
-        // Mail::to($request->email)
-        //     ->subject('Bank-Paradise: Enregistrement')
-        //     ->send(new RegistrationMail());
+        $mailParams = [
+            'subject' => 'Bank-Paradise: Enregistrement',
+            'mail' => $request->email,
+            'name' => $request->firstname . ' ' . $request->lastname,
+        ];
+
+        Mail::to('noreply@bank-paradise.com')->send(new RegistrationMail($mailParams));;
 
         if (!isset($user->stripe_id) || isset($user->subscriptions[0]->ends_at) && $this->hasSubcriptionEnded($user)) {
             $current_step = 2;
@@ -110,15 +118,40 @@ class TokenController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        $hasSuccedded = $request->user()->currentAccessToken()->delete();
 
-        return response()->json(null, 204);
+
+        if ($hasSuccedded) {
+            return response()->json(null, 204);
+        }
+        return response()->json(['message' => 'Could not logout user because he was not authenticated'], 401);
     }
 
-    public function getNews(Request $request)
+    public function currentSubscription(Request $request)
     {
-        $newsList = Articles::get();
+        if (empty($request->user()->stripe_id)) {
+            return response()->json([
+                "message" => "Abonnement introuvable.",
+            ], 404);
+        }
 
-        return response()->json($newsList, 200);
+        $planDetails = Plan::where('stripe_id', $request->user()->subscriptions[0]->stripe_plan)->first();
+
+        $stripe_url = $request->user()->billingPortalUrl('https://bank-paradise-application.web.app/account');
+
+        if ($request->user()->subscriptions[0]->ends_at) {
+            $ends_at = date_format($request->user()->subscriptions[0]->ends_at, 'd/m/Y');
+        } else {
+            $ends_at = null;
+        }
+        return response()->json([
+            "stripe_url" => $stripe_url,
+            "plan" => [
+                "name" => $planDetails->name,
+                "price" => number_format($planDetails->price / 100, 2, ',', ' ') . "€",
+                "created_at" => date_format($request->user()->subscriptions[0]->created_at, 'd/m/Y'),
+                "ends_at" => $ends_at
+            ]
+        ], 200);
     }
 }

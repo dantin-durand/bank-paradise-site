@@ -24,6 +24,7 @@ class CreateArticlesTable extends Migration
                 ->constrained()
                 ->onDelete('cascade');
             $table->timestamps();
+            $table->datetime('release_date');
         });
     }
 

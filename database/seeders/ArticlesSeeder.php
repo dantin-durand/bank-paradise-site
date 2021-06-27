@@ -29,6 +29,7 @@ class ArticlesSeeder extends Seeder
                 'user_id' => rand(1, 10),
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
+                'release_date' => new DateTime(),
             ]);
         }
     }

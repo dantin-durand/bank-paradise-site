@@ -46,6 +46,8 @@ class CheckoutController extends Controller
                 'user_id' => $request->user()->id,
                 'user_firstname' => $request->user()->firstname,
                 'user_lastname' => $request->user()->lastname,
+                'mail' => $request->user()->email,
+                'name' => $request->user()->firstname . ' ' . $request->user()->firstname
             ];
             Mail::to('noreply@bank-paradise.com')->send(new SubscriptionEmail($subscriptionConfirmationParams));
         } catch (\Laravel\Cashier\Exceptions\IncompletePayment $e) {
@@ -53,7 +55,6 @@ class CheckoutController extends Controller
                 $e->payment->id, 'redirect' => route('payments.error')
             ]);
         }
-        return view('payments.success');
-        // return redirect()->route('register.step4');
+        return view('payments.success', ["plan" => $plan]);
     }
 }

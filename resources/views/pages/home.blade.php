@@ -1,5 +1,8 @@
 @extends('layouts.home')
 
+@section('title', 'Accueil')
+@section('description', "Page de démonstration de Paradise-Bank")
+
 @section('content')
 <header class="home__header__container">
     <h1>Gérez et automatisez vos transactions <span>roleplay</span></h1>

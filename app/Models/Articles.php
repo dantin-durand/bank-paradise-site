@@ -21,6 +21,7 @@ class Articles extends Model
         'banner_id',
         'body',
         'user_id',
+        'release_date',
     ];
 
     public function user()

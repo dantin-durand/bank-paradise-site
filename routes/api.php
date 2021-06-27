@@ -15,21 +15,19 @@ use Illuminate\Support\Facades\Route;
 |-----------------
 */
 
-Route::post('auth/register', [TokenController::class, 'register']);
-Route::post('auth/login', [TokenController::class, 'login']);
-Route::post('auth/logout', [TokenController::class, 'logout']);
-Route::get('checkout/plans', [CheckoutController::class, 'plans']);
+Route::post('/auth/register', [TokenController::class, 'register']);
+Route::post('/auth/login', [TokenController::class, 'login']);
+Route::get('/checkout/plans', [CheckoutController::class, 'plans']);
 Route::get('/articles', [ArticlesController::class, 'getArticles']);
+Route::get('/articles/{id}', [ArticlesController::class, 'getArticle']);
 
 Route::middleware('auth:sanctum')->post('/community', [CommunityController::class, 'createCommunity']);
-Route::middleware('auth:sanctum')->post('checkout/intent', [CheckoutController::class, 'intent']);
-Route::middleware('auth:sanctum')->post('checkout/subscribe', [CheckoutController::class, 'subscribe']);
-Route::middleware('auth:sanctum')->post('auth/account', [TokenController::class, 'account']);
-Route::middleware('auth:sanctum')->post('auth/logout', [TokenController::class, 'logout']);
-
+Route::middleware('auth:sanctum')->post('/checkout/intent', [CheckoutController::class, 'intent']);
+Route::middleware('auth:sanctum')->post('/checkout/subscribe', [CheckoutController::class, 'subscribe']);
+Route::middleware('auth:sanctum')->post('/auth/account', [TokenController::class, 'account']);
+Route::middleware('auth:sanctum')->post('/auth/logout', [TokenController::class, 'logout']);
+Route::middleware('auth:sanctum')->get('/auth/getsubscription', [TokenController::class, 'currentSubscription']);
 Route::middleware('auth:sanctum')->put('/user', [UserController::class, 'updateUser']);
 
 Route::post('/customerCare', [ServicesController::class, 'contactSupport']);
-
-// Route::get('/news', [TokenController::class, 'getNews']);
-// Route::post('/contact', [TokenController::class, 'contactSupport']);
+Route::get('/customerCareInfo', [ServicesController::class, 'getContactInfo']);

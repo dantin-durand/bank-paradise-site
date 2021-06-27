@@ -1,5 +1,8 @@
 @extends('layouts.auth')
 
+@section('title', 'Paramètres')
+@section('description', "Page pour modifier les informations de l'utilisateur")
+
 @section('content')
 <div class="auth__container">
     <form id="register-form" method="POST" action="{{ route('admin.users.update', $userInfo->id) }}" class="card">

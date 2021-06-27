@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    function updateUser(Request $request, $id)
+    function updateUser(Request $request)
     {
         $request->validate([
             'firstname' => 'required',
@@ -18,7 +18,7 @@ class UserController extends Controller
             'password' => 'required',
         ]);
 
-        $user = User::where('id', $id);
+        $user = User::where('id', $request->user()->id);
 
         $user->update([
             'firstname' => $request->firstname,
