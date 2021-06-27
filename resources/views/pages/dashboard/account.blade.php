@@ -5,13 +5,15 @@
 
 @section('content')
 <div class="container account">
-    @if (Auth::User()->is_admin === 1 && Request::url() !== route('account'))
+
+    @if (Auth::User()->is_admin === 1 && $is_admin_page === 1)
     <a href="{{ route('admin.users') }}" class="back-btn"><i class="fas fa-chevron-left"></i> retour</a>
     @endif
     <div class="account__title">
-        @if (Auth::User()->is_admin === 1 && Request::url() !== route('account'))
+
+        @if (Auth::User()->is_admin === 1 && $is_admin_page === 1)
         <h1>Compte de {{ $userDetails->firstname }}</h1>
-        @elseif (Auth::User()->is_admin === 1)
+        @elseif (Auth::User()->is_admin === 1 && $is_admin_page !== 1)
             <h1>Compte</h1>
             <a class="btn btn-full" href="/admin/users">Mode admin</a>
         @endif
@@ -51,7 +53,7 @@
 
         <div>
                 <h2>Informations</h2>
-                @if (Auth::User()->is_admin === 1 && Request::url() !== route('account'))
+                @if (Auth::User()->is_admin === 1 && isset($is_admin_page))
                 <a class="btn" href="{{ route('admin.users.edit', [$userDetails->id]) }}">Modifier</a>
                 @else
                 <a class="btn" href="{{ route('settings') }}">Modifier</a>
