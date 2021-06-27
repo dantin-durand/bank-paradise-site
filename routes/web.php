@@ -36,7 +36,7 @@ Route::view('/services', 'pages.services');
 
 /*------- CONTACT US -------*/
 
-Route::get('/contact', [ContactController::class, 'renderContact']);
+Route::get('/contact', [ContactController::class, 'renderContact'])->name('contact');
 
 
 /*--------- Mail ----------*/
@@ -105,4 +105,4 @@ Route::delete('/admin/news/{id}', [ArticlesController::class, 'deleteArticles'])
 
 /*----- SUBSCRIPTION ------*/
 
-Route::get('/admin/subscriptions', [SubscriptionsController::class, 'renderSubscriptions'])->middleware('auth');
+Route::get('/admin/subscriptions{filter?}', [SubscriptionsController::class, 'renderSubscriptions'])->middleware('auth');

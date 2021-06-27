@@ -1,5 +1,8 @@
 @extends('layouts.default')
 
+@section('title', 'Article')
+@section('description', "Page avec les détails d'un article")
+
 @section('content')
 <header class="article__header" style="background:linear-gradient(0deg, rgba(214,16,22,0.4640231092436975) 0%, rgba(214,16,22,0) 100%), url('{{ $articleDetails->banner }}');">
     <h1 class="title">{{ $articleDetails->title }}</h1>

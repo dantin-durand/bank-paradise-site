@@ -1,5 +1,8 @@
 @extends('layouts.dashboard')
 
+@section('title', 'Dahsboard')
+@section('description', "Page d'interraction role-play personnelle")
+
 @section('content')
 <div class="container dashboard">
     <h1>Bonjour {{ Auth::User()->name }}</h1>

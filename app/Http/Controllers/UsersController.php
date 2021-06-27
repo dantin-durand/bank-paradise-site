@@ -14,7 +14,15 @@ class UsersController extends Controller
     function renderUserInfo(Request $request)
     {
         $userDetails = User::firstWhere('id', $request->user()->id);
-        $planDetails = Plan::where('stripe_id', $userDetails->subscriptions[0]->stripe_plan)->first();
+        if (isset($userDetails->subscriptions[0]->stripe_plan)) {
+
+            $planDetails = Plan::where('stripe_id', $userDetails->subscriptions[0]->stripe_plan)->first();
+        } else {
+
+            $planDetails = [];
+        }
+
+
 
         return view('pages.dashboard.account', ["userDetails" => $userDetails, "planDetails" => $planDetails]);
     }

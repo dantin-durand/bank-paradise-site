@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Config;
 
 class CustomerCareConfirmationMail extends Mailable
 {
@@ -28,6 +29,8 @@ class CustomerCareConfirmationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->params['subject'])->view('emails.customer_care_confirmation', ['params' => $this->params]);
+        return $this->subject($this->params['subject'])
+            ->from($address = 'noreply@bank-paradise.com', $name = "Bank Paradise")
+            ->view('emails.customer_care_confirmation', ['params' => $this->params]);
     }
 }

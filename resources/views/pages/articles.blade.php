@@ -1,8 +1,12 @@
 @extends('layouts.default')
 
+
+@section('title', 'Articles')
+@section('description', "Liste des articles du point de vue utilisateur")
+
 @section('content')
 <header class="header__container">
-    <h1 class="title">News</h1>r
+    <h1 class="title">News</h1>
     <form action="{{ route('news') }}" method="GET">
         <input type="search" name="search" value="{{ app('request')->input('search') }}" placeholder="Rechercher...">
         {{-- <button type="submit">Rechercher</button> --}}

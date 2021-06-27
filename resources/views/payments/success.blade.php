@@ -5,13 +5,15 @@
     <div class="card payment-container">
         <h1 class="color-success"><i class="fas fa-check-circle"></i></h1>
         <h1>Paiement effectué avec succès.</h1>
-        <p>Vous allez être redirigé.</p>
-        <span><a href="{{ route('register.step4') }}">Cliquez ici si vous n'êtes pas redirigé après 3sec</a></span>
+        <p >
+            Voici les détails de votre commande:
+        </p>
+        <hr />
+        <p style="margin: 20px 0px">Abonnement : {{ $plan->name }}</p>
+        <p style="margin: 20px 0px">Prix : {{ number_format($plan->price / 100, 2, ',', ' ') }} €/mois</p>
+        <hr />
+        <br>
+        <span style="text-align: center; width: 100%"><a href="{{ route('register.step4') }}" class="btn btn-large btn-full" style="margin: auto">Continuer</a></span>
     </div>
 </div>
-<script>
-    setTimeout(() => {
-        window.location.href = "{{ route('register.step4') }}";
-    }, 3000);
-</script>
 @endsection

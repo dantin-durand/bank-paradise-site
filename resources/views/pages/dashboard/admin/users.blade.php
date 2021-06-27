@@ -1,5 +1,8 @@
 @extends('layouts.dashboard')
 
+@section('title', 'Utilisateurs')
+@section('description', "Liste des utilisateurs du point de vue de l'administrateur")
+
 @section('content')
 <div class="container account">
     <h1>Espace administrateur</h1>

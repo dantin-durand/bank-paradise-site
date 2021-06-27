@@ -1,5 +1,8 @@
 @extends('layouts.services')
 
+@section('title', 'Services')
+@section('description', "Page d'information sur les services Paradise-Bank")
+
 @section('content')
 <header class="services__header__container">
     <div class="services__header__title">

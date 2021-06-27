@@ -1,17 +1,22 @@
 @extends('layouts.default')
 
+@section('title', 'Contact')
+@section('description', "Page pour contacter le service client de Paradise-Bank")
+
 @section('content')
 <header class="header__container">
     <h1 class="title">Contact</h1>
 </header>
 <main class="contact__container">
-    <form action="" class="card">
+    <form method="POST" action="/send-mail" class="card">
+        @csrf
         <div class="contact__first-part">
-            <input class="input" type="text" name="" id="" placeholder="Nom*" require />
-            <input class="input" type="text" name="" id="" placeholder="Prénom*" require />
-            <input class="input" type="text" name="" id="" placeholder="Objet" require />
+            <input class="input" type="text" name="firstname" id="" placeholder="Nom*" require />
+            <input class="input" type="text" name="lastname" id="" placeholder="Prénom*" require />
+            <input class="input" type="text" name="object" id="" placeholder="Objet" require />
+            <input class="input" type="text" name="email" id="" placeholder="Email" require />
         </div>
-        <textarea name="" id="" placeholder="Message"></textarea>
+        <textarea name="body" id="" placeholder="Message"></textarea>
         <button class="btn btn-full btn-large">Envoyer</button>
     </form>
 

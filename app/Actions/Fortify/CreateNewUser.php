@@ -39,6 +39,8 @@ class CreateNewUser implements CreatesNewUsers
 
         $mailParams = [
             'subject' => 'Bank-Paradise: Enregistrement',
+            'mail' => $input['email'],
+            'name' => $input['firstname'] . ' ' . $input['lastname']
         ];
 
         Mail::to($input['email'])->send(new RegistrationMail($mailParams));;

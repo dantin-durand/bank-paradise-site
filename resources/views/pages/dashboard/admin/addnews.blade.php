@@ -1,5 +1,8 @@
 @extends('layouts.dashboard')
 
+@section('title', 'Article')
+@section('description', 'Ajouter un article')
+
 @section('content')
 <div class="container account">
     <h1>Espace administrateur</h1>
@@ -25,8 +28,18 @@
             </div>
             <div class="auth__input-container">
                 <input id="banner" type="file" class="" name="banner" value="{{ old('banner') }}" autocomplete="image">
-                <i>{{ isset($article) ? "N'ajoutez pas d'image si vous souhaitez conserver l'actuelle." : ""}}</i>
+                <span>{{ isset($article) ? "N'ajoutez pas d'image si vous souhaitez conserver l'actuelle." : ""}}</span>
                 @error('banner')
+                <span role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+
+            <div class="auth__input-container">
+                <span>Date de publication:</span>
+                <input id="releaseDate" class="input" type="date" name="releaseDate" value="{{ isset($article) ? date('Y-m-d', strtotime($article->release_date)) : old('releaseDate') }}" required >
+                @error('releaseDate')
                 <span role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

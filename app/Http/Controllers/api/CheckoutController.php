@@ -28,6 +28,7 @@ class CheckoutController extends Controller
 
     public function subscribe(Request $request)
     {
+
         $request->validate([
             'name' => 'required',
             'payment_method' => 'required',
@@ -35,7 +36,7 @@ class CheckoutController extends Controller
             'coupon' => 'nullable'
         ]);
 
-        $plan = Plan::find(1);
+        $plan = Plan::find($request->plan);
 
         try {
             $subscription = $request->user()
@@ -43,13 +44,15 @@ class CheckoutController extends Controller
                 ->withCoupon($request->coupon)
                 ->create($request->payment_method);
 
-            // $subscriptionConfirmationParams = [
-            //     'subject' => 'New Subscription',
-            //     'user_id' => $request->user()->id,
-            //     'user_firstname' => $request->user()->firstname,
-            //     'user_lastname' => $request->user()->lastname,
-            // ];
-            // Mail::to('noreply@bank-paradise.com')->send(new SubscriptionEmail($subscriptionConfirmationParams));
+            $subscriptionConfirmationParams = [
+                'subject' => 'New Subscription',
+                'user_id' => $request->user()->id,
+                'user_firstname' => $request->user()->firstname,
+                'user_lastname' => $request->user()->lastname,
+                'mail' => $request->user()->email,
+                'name' => $request->user()->firstname . ' ' . $request->user()->lastname,
+            ];
+            Mail::to('noreply@bank-paradise.com')->send(new SubscriptionEmail($subscriptionConfirmationParams));
 
             return response()->json($subscription);
         } catch (\Laravel\Cashier\Exceptions\IncompletePayment $e) {

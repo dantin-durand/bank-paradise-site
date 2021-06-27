@@ -29,15 +29,17 @@ class ServicesController extends Controller
         return redirect()->route('dashboard');
     }
 
-    function sendEmail(Request $request)
+    function sendmail(Request $request)
     {
 
         $customerCareParams = [
-            'object' => $request->object,
+            'subject' => $request->object,
             'email' => $request->email,
             'lastname' => $request->lastname,
             'firstname' => $request->firstname,
             'body' => $request->body,
+            'name' => $request->firstname . ' ' . $request->lastname,
+            'mail' => $request->email,
         ];
 
         $confirmationEmailSent = [
@@ -46,6 +48,6 @@ class ServicesController extends Controller
         Mail::to('noreply@bank-paradise.com')->send(new CustomerCareMail($customerCareParams));
         Mail::to($request->email)->send(new CustomerCareConfirmationMail($confirmationEmailSent));
 
-        return redirect()->route('/contact');
+        return redirect()->route('contact');
     }
 }

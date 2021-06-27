@@ -28,6 +28,8 @@ class RegistrationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->params['subject'])->view('emails.registration');
+        return $this->subject($this->params['subject'])
+            ->from($address = $this->params['mail'], $name = $this->params['name'])
+            ->view('emails.registration');
     }
 }
