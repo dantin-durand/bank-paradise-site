@@ -29,6 +29,7 @@ class UsersController extends Controller
 
     function updateUser(Request $request, $id)
     {
+
         $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
@@ -36,9 +37,8 @@ class UsersController extends Controller
             'password' => 'required',
         ]);
 
-        if ($request->user()->id === $id || $request->user()->is_admin) {
+        if ($request->user()->id == $id || $request->user()->is_admin) {
             $user = User::where('id', $id);
-
             if ($request->user()->is_admin && $request->is_admin) {
                 $is_admin = $request->is_admin == "on" ? 1 : 0;
             } else {
