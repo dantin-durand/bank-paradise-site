@@ -1,62 +1,72 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Bank Paradise
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Installation
 
-## About Laravel
+1.  `composer install`
+2.  `npm install`
+3.  `php artisan migrate`
+4.  `php artisan db:seed`
+5.  `php artisan serve`
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Liens du site
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+https://bank-paradise-site.herokuapp.com/
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Technologies:
 
-## Learning Laravel
+-   Laravel
+-   Fortify
+-   Mailtrap
+-   Stripe
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Architecture:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   MVC
+-   Templating blade pour la scalabilité du projet
 
-## Laravel Sponsors
+# URL du site web
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Visiteurs
 
-### Premium Partners
+|    URL     | Method | Description                                             | Payload attendue                                                                                                     |
+| :--------: | :----: | ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+|     /      |  GET   | Page d'accueil                                          | ----------------                                                                                                     |
+|   /news    |  GET   | Page avec la liste des articles                         | ----------------                                                                                                     |
+| /news/{id} |  GET   | Page avec les détails d'un article                      | ----------------                                                                                                     |
+| /services  |  ---   | Page avec une description des services de Bank-Paradise | ----------------                                                                                                     |
+|  /contact  |  GET   | Page de contact avec le service client                  | ----------------                                                                                                     |
+| /send-mail |  POST  | URL d'envoi de mail                                     | `{ object: 'sujet',email: 'adresseMail@gmail.com', lastname: 'nomDeFamille', firstname: 'prénom', body: 'message' }` |
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+### Membres
 
-## Contributing
+|        URL        | Method | Description                                     | Payload attendue                                                                  |
+| :---------------: | :----: | ----------------------------------------------- | --------------------------------------------------------------------------------- |
+|     /service      |  GET   | URL de redirection après login                  | ----------------                                                                  |
+|  /register/step2  |  ---   | Page de l'étape 2 de l'enregistrement           | ----------------                                                                  |
+|  /register/step3  |  GET   | Page de l'étape 3 de l'enregistrement           | ----------------                                                                  |
+|  /register/step3  |  POST  | URL de paiement d'abonnement                    | `{name: 'UnNom', payment_method: 'tokenDeStripe', plan: 1, coupon: 'WEBSTART10'}` |
+|  /register/step4  |  ---   | Page de l'étape 4 de l'enregistrement           | ----------------                                                                  |
+|  /payment/error   |  ---   | Page d'information des erreurs lors du paiement | ----------------                                                                  |
+|     /account      |  GET   | Page de description du compte de l'utilisateur  | ----------------                                                                  |
+| /account/settings |  GET   | Page d'édition du compte utilisateur            | ----------------                                                                  |
+|     /account      |  GET   | URL d'édition du compte utilisateur             | ``                                                                                |
+|    /community     |  POST  | URL de création de communauté                   | `{name: 'communityName', description: 'communityDescription}`                     |
+|    /dashboard     |  ---   | Page dashboard de l'utilisateur                 | ----------------                                                                  |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Admin
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+|              URL              | Method | Description                                                 | Payload attendue                                                                                          |
+| :---------------------------: | :----: | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+|         /admin/users          |  GET   | Page de listing des utilisateurs                            | ----------------                                                                                          |
+|       /admin/user/{id}        |  GET   | Page de détail d'un utilisateur sélectionné                 | ----------------                                                                                          |
+|   /admin/user/settings/{id}   |  GET   | Page de modification d'un utilisateur sélectionné           | ----------------                                                                                          |
+|       /admin/users/{id}       |  PUT   | URL de modification d'un utilisateur via son ID             | `{firstname: 'prénom', lastname: 'nom', email: 'fausseAdresse@gmail.com', password: 'UnMoTdEpAsSe123!' }` |
+|       /admin/users/{id}       | DELETE | URL de suppression d'un utilisateur via son ID              | ----------------                                                                                          |
+|          /admin/news          |  GET   | Page de listing des articles                                | ----------------                                                                                          |
+|        /admin/addnews         |  GET   | Page d'ajout d'articles                                     | ----------------                                                                                          |
+|       /admin/news/{id}        |  GET   | Page de consultation d'un article                           | ----------------                                                                                          |
+|          /admin/news          |  POST  | URL d'ajout d'un article                                    | `{ title: 'titre' , banner: imageChoisie, body: 'blablablabla' }`                                         |
+|       /admin/news/{id}        |  PUT   | URL de mise à jour d'un article via son ID                  | `{ title: "Un Titre",banner: IMAGE,body: "Un Texte",releaseDate: "2021-05-07 00:00:00" }`                 |
+|   /admin/news/{id}/visible    |  PUT   | URL de mise à jour de la visibilité d'un article via son ID | ----------------                                                                                          |
+|       /admin/news/{id}        | DELETE | URL de suppression d'un article via son ID                  | ----------------                                                                                          |
+| /admin/subscriptions{filter?} |  GET   | Page avec la liste des abonnements potentiellement filtré   | ----------------                                                                                          |
