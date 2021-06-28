@@ -20,13 +20,18 @@ class UserController extends Controller
 
         $user = User::where('id', $request->user()->id);
 
-        $user->update([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        if (isset($user)) {
 
-        return response()->json(['message' => 'Successfully updated user information'], 200);
+            $user->update([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+
+            return response()->json(['message' => 'Successfully updated user information'], 200);
+        }
+
+        return response()->json(['message' => 'Vous devez être connecté pour mettre à jour vos informations'], 401);
     }
 }
